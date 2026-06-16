@@ -129,6 +129,16 @@ The code is intentionally small and readable. If a page on this site refers to a
 
 This is a community reference. The DWI-focused parts reflect one team's experience; broader coverage is welcome. See the [repo](https://github.com/phindagijimana/neuro_stack) for how to file issues and open PRs.
 
+## Contact
+
+Maintained by **Philbert Ndagijimana**.
+
+- :material-linkedin: LinkedIn — [philbert-ndagijimana](https://www.linkedin.com/in/philbert-ndagijimana-319570188/)
+- :material-email: Email — [phindagiji@gmail.com](mailto:phindagiji@gmail.com)
+- :material-github: GitHub issues — [phindagijimana/neuro_stack](https://github.com/phindagijimana/neuro_stack/issues)
+
+Reach out for collaborations, corrections, lab tours, or to flag a topic the handbook should cover. The links also appear as social icons at the bottom of every page.
+
 ## License
 
 Content and code are released under the [MIT license](https://github.com/phindagijimana/neuro_stack/blob/main/LICENSE).

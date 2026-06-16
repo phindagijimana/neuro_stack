@@ -51,6 +51,20 @@ Visit the rendered site at **`https://<you>.github.io/neuro-handbook/`** once Gi
 
 Early. Content is being ported and expanded chapter-by-chapter. The data-engineering section is the most complete; fundamentals and AI/ML sections are stubs that will grow over time. Contributions and corrections are welcome — open an issue or a PR.
 
+## Contact
+
+Maintained by **Philbert Ndagijimana**.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-philbert--ndagijimana-0a66c2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/philbert-ndagijimana-319570188/)
+[![Email](https://img.shields.io/badge/email-phindagiji%40gmail.com-d14836?logo=gmail&logoColor=white)](mailto:phindagiji@gmail.com)
+[![Issues](https://img.shields.io/github/issues/phindagijimana/neuro_stack?logo=github)](https://github.com/phindagijimana/neuro_stack/issues)
+
+- 💼 **LinkedIn** — <https://www.linkedin.com/in/philbert-ndagijimana-319570188/>
+- ✉️ **Email** — <phindagiji@gmail.com>
+- 🐛 **Issues / PRs** — <https://github.com/phindagijimana/neuro_stack/issues>
+
+Reach out for collaborations, corrections, lab tours, or to flag a topic the handbook should cover.
+
 ## License
 
 [MIT](LICENSE).
