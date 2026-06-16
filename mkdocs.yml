@@ -185,6 +185,7 @@ nav:
       - Training mechanics: ai/training-mechanics.md
       - Foundation models: ai/foundation-models.md
       - Evaluation pitfalls: ai/evaluation.md
+      - Regulatory & clinical deployment: ai/regulatory.md
   - Computing:
       - computing/index.md
       - Python scientific stack: computing/python-stack.md
@@ -208,6 +209,7 @@ nav:
       - fMRI first/second-level GLM: tutorials/fmri-glm.md
       - Cortical-thickness ML: tutorials/cortical-thickness-ml.md
       - Lesion segmentation (nnU-Net): tutorials/lesion-segmentation.md
+      - Multimodal image + text: tutorials/multimodal-image-text.md
       - Capstone — DICOM to figure: tutorials/capstone.md
   - Tools:
       - tools/index.md

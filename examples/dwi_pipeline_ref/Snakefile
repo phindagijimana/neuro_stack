@@ -1,0 +1,71 @@
+# DWI cohort pipeline — reference implementation
+#
+# Reads QSIRecon outputs, extracts per-subject metrics, aggregates into
+# a cohort table, emits manifests for observability, and renders an HTML
+# QC report. Demonstrates the five-pillars pattern in ~80 lines.
+
+configfile: "config.yaml"
+
+SUBJECTS = config["subjects"]
+DERIV    = config["derivatives_root"]
+COHORT   = config.get("cohort_root", "cohort")
+
+# --- Final outputs the user wants ---
+rule all:
+    input:
+        f"{COHORT}/cohort_metrics.parquet",
+        f"{COHORT}/qc_report.html",
+        expand(f"{COHORT}/manifests/{{sub}}.json", sub=SUBJECTS)
+
+# --- Per-subject: extract DTI / connectome metrics ---
+rule extract_metrics:
+    input:
+        recon_dir = f"{DERIV}/qsirecon/{{sub}}"
+    output:
+        metrics = f"{COHORT}/per_subject/{{sub}}_metrics.parquet"
+    log:
+        f"{COHORT}/logs/extract_{{sub}}.log"
+    resources:
+        mem_mb = 4000,
+        runtime = 30
+    container:
+        "docker://python:3.12-slim"
+    shell:
+        "python scripts/extract_metrics.py "
+        "--recon {input.recon_dir} --out {output.metrics} 2>&1 | tee {log}"
+
+# --- Per-subject: write a manifest of what ran + provenance ---
+rule emit_manifest:
+    input:
+        metrics = f"{COHORT}/per_subject/{{sub}}_metrics.parquet"
+    output:
+        manifest = f"{COHORT}/manifests/{{sub}}.json"
+    container:
+        "docker://python:3.12-slim"
+    shell:
+        "python scripts/emit_manifest.py --subject {wildcards.sub} "
+        "--inputs {input.metrics} --out {output.manifest}"
+
+# --- Cohort-level: aggregate ---
+rule aggregate_cohort:
+    input:
+        metrics = expand(f"{COHORT}/per_subject/{{sub}}_metrics.parquet", sub=SUBJECTS)
+    output:
+        cohort = f"{COHORT}/cohort_metrics.parquet"
+    container:
+        "docker://python:3.12-slim"
+    shell:
+        "python scripts/aggregate_cohort.py --inputs {input.metrics} --out {output.cohort}"
+
+# --- Cohort-level: HTML QC report ---
+rule make_report:
+    input:
+        cohort    = f"{COHORT}/cohort_metrics.parquet",
+        manifests = expand(f"{COHORT}/manifests/{{sub}}.json", sub=SUBJECTS)
+    output:
+        html = f"{COHORT}/qc_report.html"
+    container:
+        "docker://python:3.12-slim"
+    shell:
+        "python scripts/make_report.py --cohort {input.cohort} "
+        "--manifests {input.manifests} --out {output.html}"

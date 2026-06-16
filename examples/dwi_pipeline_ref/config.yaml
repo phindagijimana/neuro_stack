@@ -1,0 +1,16 @@
+# Reference DWI pipeline configuration. Edit these to match your cohort.
+
+bids_root: /path/to/your/bids
+derivatives_root: /path/to/derivatives
+cohort_root: cohort
+container_root: /path/to/containers
+
+subjects:
+  - sub-001
+  - sub-002
+  - sub-003
+
+# Optional: per-subject overrides go here as a dict of dicts
+# overrides:
+#   sub-001:
+#     skip_recon: true
