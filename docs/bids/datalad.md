@@ -51,7 +51,7 @@ datalad get sub-01   # fetch one subject's bytes
 - More than one person will touch it → yes.
 - You're working alone for one paper → probably skip unless you already know DataLad.
 
-DataLad has a learning curve. Most labs adopt it once they've been burned by "what changed between v1 and v2?" once. The official handbook (<https://handbook.datalad.org>) is excellent and worth a full day of reading before you commit to a project.
+The DataLad handbook — the single best learning resource — lives [here](https://handbook.datalad.org). DataLad has a learning curve. Most labs adopt it once they've been burned by "what changed between v1 and v2?" once. The official handbook (<https://handbook.datalad.org>) is excellent and worth a full day of reading before you commit to a project.
 
 ## References
 

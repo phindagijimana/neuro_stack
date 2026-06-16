@@ -6,7 +6,7 @@ The scanner gives you DICOM. BIDS apps want NIfTI in a strict layout. Two tools 
 
 ## The tools
 
-### `dcm2niix` — the DICOM → NIfTI step
+### `dcm2niix` ([source](https://github.com/rordenlab/dcm2niix)) — the DICOM → NIfTI step
 
 The canonical conversion tool [Li et al., 2016](https://doi.org/10.1016/j.jneumeth.2016.03.001)[^dcm2niix].
 
@@ -24,7 +24,7 @@ for nii in result.nifti_files:
     print(nii)
 ```
 
-### HeuDiConv — opinionated, reproducible
+### HeuDiConv — opinionated, reproducible ([docs](https://heudiconv.readthedocs.io/en/latest/))
 
 [Halchenko et al., 2024](https://doi.org/10.21105/joss.05839)[^heudiconv].
 
@@ -55,7 +55,7 @@ def infotodict(seqinfo):
 
 Write the heuristic once, run it on hundreds of subjects.
 
-### Dcm2Bids — opinionated, JSON-config
+### Dcm2Bids — opinionated, JSON-config ([docs](https://unfmontreal.github.io/Dcm2Bids/3.2.0/))
 
 Same idea, different config format. You write a JSON describing series matches; the tool produces BIDS.
 

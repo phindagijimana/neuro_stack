@@ -40,7 +40,7 @@ Different MNI templates are **not interchangeable**. Always record which one you
 
 ## TemplateFlow
 
-<https://www.templateflow.org> distributes versioned templates as a pip-installable archive. Use it instead of bundling templates in your repo. [Ciric et al., 2022](https://doi.org/10.1038/s41592-022-01681-2)[^templateflow].
+[TemplateFlow](https://www.templateflow.org) (full docs and template browser [here](https://www.templateflow.org/browse/)) distributes versioned templates as a pip-installable archive. Use it instead of bundling templates in your repo. [Ciric et al., 2022](https://doi.org/10.1038/s41592-022-01681-2)[^templateflow].
 
 ```python
 from templateflow import api as tflow

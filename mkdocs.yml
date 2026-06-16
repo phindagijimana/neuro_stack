@@ -80,6 +80,15 @@ nav:
       - Coordinate systems: fundamentals/coordinate-systems.md
       - File formats: fundamentals/file-formats.md
       - Preprocessing overview: fundamentals/preprocessing.md
+      - MRI sequences:
+          - fundamentals/sequences/index.md
+          - MPRAGE: fundamentals/sequences/mprage.md
+          - DWI: fundamentals/sequences/dwi.md
+          - EPI: fundamentals/sequences/epi.md
+          - FLAIR: fundamentals/sequences/flair.md
+          - GRE: fundamentals/sequences/gre.md
+          - SWI: fundamentals/sequences/swi.md
+          - Spin echo: fundamentals/sequences/spin-echo.md
   - BIDS toolkit:
       - bids/index.md
       - Validating a dataset: bids/validation.md

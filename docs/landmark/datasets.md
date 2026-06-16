@@ -31,17 +31,17 @@
 
 ## Open repositories
 
-- **OpenNeuro** — open BIDS datasets, versioned, browser + CLI. [Markiewicz et al., 2021](https://doi.org/10.7554/eLife.71774)[^13]. <https://openneuro.org>
-- **NeuroVault** — derived statistical maps and atlases. [Gorgolewski et al., 2015](https://doi.org/10.3389/fninf.2015.00008)[^14]. <https://neurovault.org>
+- **OpenNeuro** ([portal](https://openneuro.org), [docs](https://docs.openneuro.org)) — open BIDS datasets, versioned, browser + CLI. [Markiewicz et al., 2021](https://doi.org/10.7554/eLife.71774)[^13]. <https://openneuro.org>
+- **NeuroVault** ([portal](https://neurovault.org)) — derived statistical maps and atlases. [Gorgolewski et al., 2015](https://doi.org/10.3389/fninf.2015.00008)[^14]. <https://neurovault.org>
 - **OpenfMRI** (legacy) — preceded OpenNeuro; most datasets migrated.
 
 ## Access patterns
 
 Three tiers:
 
-- **Open** — clone from OpenNeuro, no application needed. Start your method development here.
-- **Data-use agreement (DUA)** — HCP, OASIS. Sign a form, get credentials, download via AWS S3 or `aws s3 sync`.
-- **Application + IRB** — UK Biobank, ABCD. Months of paperwork. Worth it for production-scale work.
+- **Open** — clone from OpenNeuro [here](https://openneuro.org), no application needed. Start your method development here.
+- **Data-use agreement (DUA)** — HCP ([portal](https://www.humanconnectome.org)), OASIS ([portal](https://www.oasis-brains.org)). Sign a form, get credentials, download via AWS S3 or `aws s3 sync`.
+- **Application + IRB** — UK Biobank ([portal](https://www.ukbiobank.ac.uk)), ABCD ([portal](https://abcdstudy.org)). Months of paperwork. Worth it for production-scale work.
 
 ## Why use a reference dataset
 

@@ -22,10 +22,10 @@ Each step has many implementations. Each implementation has decades of papers be
 
 A **BIDS-app** is a containerised, opinionated pipeline that consumes a BIDS dataset and produces a BIDS-derivatives dataset. The dominant ones:
 
-- **fMRIPrep** — functional MRI preprocessing [Esteban et al., 2019](https://doi.org/10.1038/s41592-018-0235-4)[^fmriprep].
-- **QSIPrep** — diffusion MRI preprocessing [Cieslak et al., 2021](https://doi.org/10.1038/s41592-021-01185-5)[^qsiprep].
+- **fMRIPrep** ([docs](https://fmriprep.org)) — functional MRI preprocessing [Esteban et al., 2019](https://doi.org/10.1038/s41592-018-0235-4)[^fmriprep].
+- **QSIPrep** ([docs](https://qsiprep.readthedocs.io)) — diffusion MRI preprocessing [Cieslak et al., 2021](https://doi.org/10.1038/s41592-021-01185-5)[^qsiprep].
 - **sMRIPrep** — structural MRI preprocessing.
-- **MRIQC** — automated quality control reports [Esteban et al., 2017](https://doi.org/10.1371/journal.pone.0184661)[^mriqc].
+- **MRIQC** ([docs](https://mriqc.readthedocs.io)) — automated quality control reports [Esteban et al., 2017](https://doi.org/10.1371/journal.pone.0184661)[^mriqc].
 - **PETPrep** — PET preprocessing.
 - **HippUnfold**, **MELD**, **NiBabies**, **NiRodents** — modality / population specific.
 

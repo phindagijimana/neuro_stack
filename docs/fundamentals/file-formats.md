@@ -12,7 +12,7 @@ A DICOM file looks like:
 - Optional **pixel data** (the image itself).
 - Series-level grouping: one *study* contains many *series*; one *series* contains many *instances* (slices or frames).
 
-**For research**, you almost always convert DICOM to NIfTI on ingestion using `dcm2niix` [Li et al., 2016](https://doi.org/10.1016/j.jneumeth.2016.03.001)[^dcm2niix]. The conversion drops DICOM-specific metadata you don't need and produces:
+DICOM documentation lives [here](https://www.dicomstandard.org/current). For research, you almost always convert DICOM to NIfTI on ingestion using `dcm2niix` [Li et al., 2016](https://doi.org/10.1016/j.jneumeth.2016.03.001)[^dcm2niix]. The conversion drops DICOM-specific metadata you don't need and produces:
 
 - A `.nii.gz` volume.
 - A `.json` sidecar that preserves the parameters you *do* need (TR, TE, sequence name, etc.).
@@ -34,7 +34,7 @@ Extensions:
 
 Two NIfTI flavours: **NIfTI-1** (the original) and **NIfTI-2** (allows datasets larger than 2³¹ voxels). Most tools speak both.
 
-Read with `nibabel`:
+Read with [`nibabel`](https://nipy.org/nibabel/) (full docs [here](https://nipy.org/nibabel/)):
 
 ```python
 import nibabel as nib
@@ -50,7 +50,7 @@ print(img.header)
 When you reconstruct the cortical surface (with FreeSurfer or HCP-style tools), the data isn't a 3D grid anymore — it's a 2D mesh.
 
 - **GIFTI** (`.surf.gii`, `.func.gii`, `.shape.gii`) — XML-based format for a single surface or per-vertex data array.
-- **CIFTI** (`.dscalar.nii`, `.dtseries.nii`, `.pscalar.nii`) — combines surface (left + right hemispheres) **and** subcortical volume in one file. The HCP standard.
+- **CIFTI** (`.dscalar.nii`, `.dtseries.nii`, `.pscalar.nii`) — the [CIFTI-2 specification](https://www.nitrc.org/projects/cifti/) — combines surface (left + right hemispheres) **and** subcortical volume in one file. The HCP standard.
 
 CIFTI files are technically NIfTI-2 files with a special intent code; tools that don't understand them will see a tiny weird array. Use `nibabel.cifti2` to read them.
 

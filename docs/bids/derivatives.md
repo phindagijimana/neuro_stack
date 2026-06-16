@@ -4,7 +4,7 @@
 
 ## The rule
 
-BIDS-Derivatives is BIDS, with three extras:
+The BIDS-Derivatives specification lives [here](https://bids-specification.readthedocs.io/en/stable/derivatives/introduction.html). It's BIDS, with three extras:
 
 1. Outputs live under `derivatives/<pipeline-name>/`.
 2. That folder has its own `dataset_description.json` declaring the pipeline.

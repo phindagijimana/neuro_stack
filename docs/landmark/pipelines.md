@@ -4,30 +4,30 @@
 
 ## Anatomical / structural
 
-- **FreeSurfer (`recon-all`)** — Cortical surface reconstruction + parcellation + subcortical segmentation. The reference. Slow (~10 h / subject); outputs every other surface-based tool consumes. [Fischl, 2012](https://doi.org/10.1016/j.neuroimage.2012.01.021)[^fs]; [Dale et al., 1999](https://doi.org/10.1006/nimg.1998.0395)[^dale]; [Fischl & Dale, 2000](https://doi.org/10.1073/pnas.200033797)[^fd].
-- **FastSurfer** — Deep-learning re-implementation of `recon-all`. Same outputs, ~10 minutes GPU. [Henschel et al., 2020](https://doi.org/10.1016/j.neuroimage.2020.117012)[^fastsurfer].
+- **FreeSurfer (`recon-all`)** ([homepage](https://surfer.nmr.mgh.harvard.edu)) — Cortical surface reconstruction + parcellation + subcortical segmentation. The reference. Slow (~10 h / subject); outputs every other surface-based tool consumes. [Fischl, 2012](https://doi.org/10.1016/j.neuroimage.2012.01.021)[^fs]; [Dale et al., 1999](https://doi.org/10.1006/nimg.1998.0395)[^dale]; [Fischl & Dale, 2000](https://doi.org/10.1073/pnas.200033797)[^fd].
+- **FastSurfer** ([repo](https://github.com/Deep-MI/FastSurfer)) — Deep-learning re-implementation of `recon-all`. Same outputs, ~10 minutes GPU. [Henschel et al., 2020](https://doi.org/10.1016/j.neuroimage.2020.117012)[^fastsurfer].
 - **sMRIPrep** — BIDS-app wrapper around the anatomical preprocessing in fMRIPrep.
-- **ANTs (`antsCorticalThickness`)** — Volumetric thickness; some communities prefer it. [Tustison et al., 2014](https://doi.org/10.1016/j.neuroimage.2014.05.044)[^ants_ct].
+- **ANTs** ([docs](https://github.com/ANTsX/ANTs)) `antsCorticalThickness` — Volumetric thickness; some communities prefer it. [Tustison et al., 2014](https://doi.org/10.1016/j.neuroimage.2014.05.044)[^ants_ct].
 
 ## Functional
 
-- **fMRIPrep** — The standard BIDS-app for functional MRI preprocessing. Reads BIDS, writes BIDS-derivatives, ships a per-subject QC report. [Esteban et al., 2019](https://doi.org/10.1038/s41592-018-0235-4)[^fmriprep].
+- **fMRIPrep** ([docs](https://fmriprep.org)) — The standard BIDS-app for functional MRI preprocessing. Reads BIDS, writes BIDS-derivatives, ships a per-subject QC report. [Esteban et al., 2019](https://doi.org/10.1038/s41592-018-0235-4)[^fmriprep].
 - **C-PAC** — Configurable Pipeline for the Analysis of Connectomes. Older, more customisable.
 - **AFNI's `afni_proc.py`** — AFNI's official preprocessing script generator. [Cox, 1996](https://doi.org/10.1006/cbmr.1996.0014)[^afni].
 
 ## Diffusion
 
-- **QSIPrep** — The fMRIPrep of diffusion. Handles preprocessing across many DWI acquisition flavours. [Cieslak et al., 2021](https://doi.org/10.1038/s41592-021-01185-5)[^qsiprep].
+- **QSIPrep** ([docs](https://qsiprep.readthedocs.io)) — The fMRIPrep of diffusion. Handles preprocessing across many DWI acquisition flavours. [Cieslak et al., 2021](https://doi.org/10.1038/s41592-021-01185-5)[^qsiprep].
 - **QSIRecon** — Reconstruction layer on top of QSIPrep: SS3T-CSD, MSMT-CSD, NODDI, tractography.
-- **MRtrix3** — The reconstruction / tractography workhorse. [Tournier et al., 2019](https://doi.org/10.1016/j.neuroimage.2019.116137)[^mrtrix].
-- **DIPY** — Python-native diffusion library. Best for prototyping new models. [Garyfallidis et al., 2014](https://doi.org/10.3389/fninf.2014.00008)[^dipy].
-- **FSL DTI / BedpostX / ProbtrackX** — The legacy diffusion stack. [Jenkinson et al., 2012](https://doi.org/10.1016/j.neuroimage.2011.09.015)[^fsl].
+- **MRtrix3** ([docs](https://mrtrix.readthedocs.io)) — The reconstruction / tractography workhorse. [Tournier et al., 2019](https://doi.org/10.1016/j.neuroimage.2019.116137)[^mrtrix].
+- **DIPY** ([docs](https://dipy.org)) — Python-native diffusion library. Best for prototyping new models. [Garyfallidis et al., 2014](https://doi.org/10.3389/fninf.2014.00008)[^dipy].
+- **FSL DTI / BedpostX / ProbtrackX** ([docs](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT)) — The legacy diffusion stack. [Jenkinson et al., 2012](https://doi.org/10.1016/j.neuroimage.2011.09.015)[^fsl].
 
 ## Specialist
 
-- **HippUnfold** — Unfolds the hippocampus into a 2D surface for sharper analysis of subfields. [DeKraker et al., 2022](https://doi.org/10.7554/eLife.77945)[^hippunfold].
-- **MELD** — Lesion detection in epilepsy patients. Deep learning on FreeSurfer surfaces. [Spitzer et al., 2022](https://doi.org/10.1093/brain/awac224)[^meld].
-- **MRIQC** — Automated QC reports for raw T1w, T2w, BOLD. Always run it. [Esteban et al., 2017](https://doi.org/10.1371/journal.pone.0184661)[^mriqc].
+- **HippUnfold** ([docs](https://hippunfold.readthedocs.io)) — Unfolds the hippocampus into a 2D surface for sharper analysis of subfields. [DeKraker et al., 2022](https://doi.org/10.7554/eLife.77945)[^hippunfold].
+- **MELD** ([repo](https://github.com/MELDProject/meld_classifier)) — Lesion detection in epilepsy patients. Deep learning on FreeSurfer surfaces. [Spitzer et al., 2022](https://doi.org/10.1093/brain/awac224)[^meld].
+- **MRIQC** ([docs](https://mriqc.readthedocs.io)) — Automated QC reports for raw T1w, T2w, BOLD. Always run it. [Esteban et al., 2017](https://doi.org/10.1371/journal.pone.0184661)[^mriqc].
 - **PETPrep** — BIDS-app for PET preprocessing.
 - **NiBabies / Infant-FS** — Paediatric variants.
 - **Nighres** — High-resolution / 7 T cortical processing. [Huntenburg et al., 2018](https://doi.org/10.1007/s10548-018-0617-z)[^nighres].

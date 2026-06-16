@@ -12,18 +12,18 @@
 
 ## Neuroimaging specifics
 
-- **`nibabel`** — read/write every imaging format you'll meet (NIfTI, GIFTI, CIFTI, MGH, etc.).
-- **`nilearn`** — high-level fMRI analysis, statistical maps, plotting, masking.
-- **`pybids`** — query a BIDS dataset.
-- **`dipy`** — diffusion MRI methods (registration, reconstruction, tractography).
-- **`mne`** — MEG/EEG analysis (also surface-based; useful even for non-MEG work).
-- **`templateflow`** — versioned standard templates (MNI, fsaverage, fsLR).
-- **`pydicom`** — read DICOM if you must.
+- **[`nibabel`](https://nipy.org/nibabel/)** — read/write every imaging format you'll meet (NIfTI, GIFTI, CIFTI, MGH, etc.).
+- **[`nilearn`](https://nilearn.github.io)** — high-level fMRI analysis, statistical maps, plotting, masking.
+- **[`pybids`](https://bids-standard.github.io/pybids/)** — query a BIDS dataset.
+- **[`dipy`](https://dipy.org)** — diffusion MRI methods (registration, reconstruction, tractography).
+- **[`mne`](https://mne.tools)** — MEG/EEG analysis (also surface-based; useful even for non-MEG work).
+- **[`templateflow`](https://www.templateflow.org)** — versioned standard templates (MNI, fsaverage, fsLR).
+- **[`pydicom`](https://pydicom.github.io/pydicom/stable/)** — read DICOM if you must.
 
 ## Deep learning specifics
 
 - **`torch`** + **`torchvision`** — the default training framework.
-- **`MONAI`** — medical-imaging-aware extension. Use it unless you have a specific reason.
+- **[`MONAI`](https://monai.io)** — medical-imaging-aware extension. Use it unless you have a specific reason.
 - **`accelerate`** + **`bitsandbytes`** — multi-GPU and quantisation.
 
 ## Package managers

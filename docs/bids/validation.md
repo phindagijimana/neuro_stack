@@ -10,7 +10,7 @@ A BIDS app trusts the spec. If your dataset is *almost* BIDS, the app will do *a
 
 ### 1. The web validator
 
-<https://bids-standard.github.io/bids-validator/>
+The web validator lives [here](https://bids-standard.github.io/bids-validator/).
 
 Drag your dataset into the browser. Nothing leaves your machine — it's a JavaScript app running locally. Great for one-off checks, painful for large datasets.
 
@@ -39,7 +39,7 @@ from bids import BIDSLayout
 layout = BIDSLayout("path/to/dataset", validate=True)  # raises on errors
 ```
 
-PyBIDS uses an older validator but it's good enough to catch the common errors.
+PyBIDS — full docs [here](https://bids-standard.github.io/pybids/) — uses an older validator but it's good enough to catch the common errors.
 
 ## Reading the output
 

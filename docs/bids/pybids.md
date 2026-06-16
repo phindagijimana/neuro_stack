@@ -1,5 +1,7 @@
 # Querying with PyBIDS
 
+Official PyBIDS documentation lives [here](https://bids-standard.github.io/pybids/).
+
 > PyBIDS turns a BIDS dataset into a queryable database. Use it instead of glob patterns.
 
 ## Why not just glob

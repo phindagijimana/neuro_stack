@@ -6,7 +6,7 @@
 
 Neuroimaging tools have ugly dependencies: specific Python versions, specific FreeSurfer or FSL versions, specific glibc compatibility. Installing them by hand on every machine wastes days. **Containers** ship a frozen filesystem + binaries that runs identically everywhere.
 
-## Docker on a laptop
+## Docker on a laptop ([docs here](https://docs.docker.com/))
 
 ```bash
 # Pull a BIDS app image
@@ -23,7 +23,7 @@ docker run --rm \
 
 `-v host:container` mounts a host path into the container. `--rm` deletes the container after exit; the image remains.
 
-## Apptainer on HPC
+## Apptainer on HPC ([docs here](https://apptainer.org/docs/user/latest/))
 
 HPC sites don't allow Docker (it needs root). **Apptainer** (formerly Singularity) is the rootless alternative:
 
@@ -63,7 +63,7 @@ COPY src/ src/
 ENTRYPOINT ["uv", "run", "my_pipeline"]
 ```
 
-For BIDS apps, follow the [BIDS Apps template](https://github.com/bids-apps/bids-apps.github.io) which prescribes the CLI shape and entrypoint.
+For BIDS apps, follow the [BIDS Apps template](https://github.com/bids-apps/bids-apps.github.io) (spec [here](https://bids-apps.neuroimaging.io)) which prescribes the CLI shape and entrypoint.
 
 ## Where to next
 
