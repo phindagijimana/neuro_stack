@@ -4,13 +4,15 @@ hide:
   - toc
 ---
 
-# neuro-handbook
+# The neuro-handbook Documentation Hub
 
-> An open reference for working with neuroimaging data — fundamentals, BIDS, analysis, data engineering, AI/ML, computing, and the landmark work that shaped the field.
+> Welcome to the **neuro-handbook** — an open documentation hub for everything you need to do credible neuroimaging work.
 
-This handbook is written for **people getting started** in neuroimaging research, neuroscience research, and the engineering that supports them: graduate students, postdocs, research software engineers, data engineers from outside the medical-imaging world, and developers building neuro-AI products.
+Here you'll find a tour of the **fundamentals** (modalities, file formats, MRI physics, the maths, the neuroscience), the **BIDS toolkit**, a deep **analysis** library, an opinionated **data-engineering** book, a focused **AI / ML** section, a **computing** environment guide, and a curated **landmark-work** reading list — together with a small companion **Python package** and runnable examples.
 
-It tries to be the document we wish we had when we first walked into the field.
+The handbook is written for **people getting started** in neuroimaging research, neuroscience research, and the engineering that supports them: graduate students, postdocs, research software engineers, data engineers arriving from outside the medical-imaging world, and developers building neuro-AI products. It tries to be the document we wish we had when we first walked into the field.
+
+Found something missing, wrong, or out of date? We'd love to know — every page has an *edit-on-GitHub* link in the top right, and you can also open an issue or pull request on the [repo](https://github.com/phindagijimana/neuro_handbook). Suggestions, corrections, and contributions are all welcome.
 
 ---
 
