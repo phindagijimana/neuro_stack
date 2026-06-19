@@ -2,7 +2,7 @@
 
 > MRI maps water. PET maps a molecule of your choice. The cost is ionising radiation, a cyclotron-fed tracer, and a kinetic model with assumptions you must own.
 
-Course map: Why PET → physics from positron to sinogram → reconstruction → tracers (FDG, amyloid, tau, dopamine, TSPO) → SUV / SUVR → dynamic kinetic modelling (1TC, 2TC, Logan, Patlak) → partial volume → PET-MR / attenuation correction → Centiloid → software → clinical use → worked Logan example → references.
+Course map: Why PET → physics from positron to sinogram → reconstruction → tracers (FDG, amyloid, tau, dopamine, TSPO) → SUV / SUVR → dynamic kinetic modelling (1TC, 2TC, Logan, Patlak) → partial volume → PET-MR / attenuation correction → [Centiloid](https://www.gaain.org/centiloid-project) → software → clinical use → worked Logan example → references.
 
 ## 1. Learning objectives
 
@@ -160,7 +160,7 @@ PET resolution (4–6 mm FWHM) blurs activity across tissue boundaries. Cortical
 
 - **Geometric Transfer Matrix (GTM, Rousset 1998)**: region-based; assumes uniform activity per ROI.
 
-- **PETPVC toolbox** (Thomas 2016): collects ~10 methods.
+- **[PETPVC toolbox](https://github.com/UCL/PETPVC)** (Thomas 2016): collects ~10 methods.
 
 PVC matters most for tau (small late-stage signals in atrophic cortex) and dopamine (striatal volumes).
 
@@ -180,7 +180,7 @@ PVC matters most for tau (small late-stage signals in atrophic cortex) and dopam
 
 Always report the AC method.
 
-## 8. Standardisation: Centiloid (Klunk 2015)
+## 8. Standardisation: [Centiloid](https://www.gaain.org/centiloid-project) (Klunk 2015)
 
 A linear rescaling of any amyloid PET SUVR to a common 0–100 scale:
 
@@ -194,13 +194,15 @@ Allows pooling florbetapir, florbetaben, flutemetamol, PIB studies. The Centiloi
 
 | Tool | Notes |
 |---|---|
-| **PMOD** | Commercial; gold-standard kinetic modelling, ROI definition |
-| **Turku PET Centre scripts** | Open-source, command-line, all major models |
-| **MIAKAT** (Imperial) | MATLAB, validated for receptor PET |
-| **PETPVC** | Partial volume correction methods |
-| **kineticAnalysis / dyPET** (Python) | Scriptable kinetic fits |
-| **Centiloid pipelines** | GAAIN reference data + scripts |
-| **PETPrep** (BIDS) | Reproducible PET pre-processing |
+| **[PMOD](https://www.pmod.com/web/)** | Commercial; gold-standard kinetic modelling, ROI definition |
+| **[Turku PET Centre scripts](https://www.turkupetcentre.fi/)** | Open-source, command-line, all major models |
+| **[MIAKAT](https://www.invicro.com/platforms/miakat)** (Imperial) | MATLAB, validated for receptor PET |
+| **[PETPVC](https://github.com/UCL/PETPVC)** | Partial volume correction methods |
+| **[NiftyPET / kineticAnalysis](https://github.com/NiftyPET/NiftyPET)** (Python) | Scriptable kinetic fits |
+| **[Centiloid](https://www.gaain.org/centiloid-project) pipelines** | [GAAIN](https://www.gaain.org/) reference data + scripts |
+| **[PETPrep](https://github.com/nipreps/petprep_hmc)** ([BIDS](https://bids-specification.readthedocs.io/en/stable/modality-specific-files/positron-emission-tomography.html)) | Reproducible PET pre-processing |
+| **[AMIDE](https://amide.sourceforge.net/)** | Open-source viewer and ROI analysis |
+| **[nibabel](https://nipy.org/nibabel/)** | NIfTI / Analyze / ECAT I/O in Python |
 
 ## 10. Clinical use
 
@@ -255,7 +257,28 @@ print(f"V_T = {V_T:.2f} mL/cm^3,  intercept = {intercept:.2f}")
 
 Reference-tissue Logan replaces $C_P$ with a reference TAC and yields the distribution volume ratio (DVR), where $BP_{ND} = \mathrm{DVR} - 1$.
 
-## 13. References
+## 13. External tools & resources
+
+### Kinetic modelling and quantification
+
+- [PMOD](https://www.pmod.com/web/) — commercial gold-standard kinetic modelling and ROI analysis suite.
+- [Turku PET Centre scripts](https://www.turkupetcentre.fi/) — open-source command-line library covering 1TC, 2TC, Logan, Patlak, SRTM.
+- [MIAKAT](https://www.invicro.com/platforms/miakat) — MATLAB-based receptor PET pipeline.
+- [NiftyPET](https://github.com/NiftyPET/NiftyPET) — Python framework for reconstruction and kinetic analysis.
+
+### Partial-volume correction and viewers
+
+- [PETPVC](https://github.com/UCL/PETPVC) — collection of ~10 PVC methods (Müller-Gärtner, GTM, RBV, ...).
+- [AMIDE](https://amide.sourceforge.net/) — open-source PET/SPECT/CT viewer with ROI quantification.
+- [nibabel](https://nipy.org/nibabel/) — Python I/O for NIfTI/Analyze/ECAT/PAR-REC.
+
+### Standardisation and harmonisation
+
+- [Centiloid project](https://www.gaain.org/centiloid-project) — reference data, ROIs, and scripts for cross-tracer amyloid harmonisation.
+- [GAAIN](https://www.gaain.org/) — Global Alzheimer's Association Interactive Network data portal.
+- [BIDS PET extension](https://bids-specification.readthedocs.io/en/stable/modality-specific-files/positron-emission-tomography.html) — standard layout for PET data and metadata.
+
+## 14. References
 
 1. Klunk WE, Koeppe RA, Price JC, et al. The Centiloid Project: standardizing quantitative amyloid plaque estimation by PET. *Alzheimers Dement.* 2015;11(1):1–15.e4. https://doi.org/10.1016/j.jalz.2014.07.003
 

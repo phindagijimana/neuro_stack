@@ -110,6 +110,110 @@ flowchart LR
 
 *<small>The coarse-to-fine pyramid in classical registration. Solves the local-minimum problem at coarse scales and refines accuracy at fine scales. Original figure.</small>*
 
+### Velocity fields, SyN, and diffeomorphisms
+
+!!! tip "Beginner takeaway"
+    Don't optimise the deformation directly — optimise a *velocity field* and integrate it. That single trick is what gives ANTs SyN its smooth, invertible, topology-preserving warps.
+
+#### Why parameterise a velocity, not a deformation
+
+A naive parameterisation of $\phi$ as a per-voxel displacement field has no guarantee of being invertible: nothing stops two voxels from being mapped to the same target ("folding"), and once that happens you can't recover a clean inverse warp. The fix is to parameterise a smooth, time-varying **velocity field** $v(\mathbf{x}, t)$, and obtain the deformation as the *flow* of $v$:
+
+$$
+\frac{d\phi_t}{dt} = v_t(\phi_t), \qquad \phi_0 = \mathrm{Id}, \qquad \phi = \phi_1
+$$
+
+This is the LDDMM construction ([Beg et al., 2005](https://doi.org/10.1023/B:VISI.0000043755.93987.aa)). Provided $v$ stays smooth enough, the flow is a **diffeomorphism** — smooth, bijective, smoothly invertible, topology-preserving.
+
+#### The formal definition
+
+A map $\phi: \mathbb{R}^3 \to \mathbb{R}^3$ is in $\text{Diff}(\mathbb{R}^3)$ iff both $\phi$ and $\phi^{-1}$ exist and are smooth ($C^\infty$, or in practice $C^1$ with bounded derivatives). Equivalently, $\det J_\phi(\mathbf{x}) > 0$ everywhere — the warp never folds. Without this, group analyses on warped images are **statistically suspect**: a fold or tear means a voxel "has no inverse identity", and per-voxel statistics on the resampled image describe a region that doesn't correspond cleanly to any region in the original.
+
+#### Symmetric Normalization (SyN)
+
+SyN ([Avants et al., 2008](https://doi.org/10.1016/j.media.2007.06.004)) extends LDDMM with one more idea: instead of warping moving → fixed in one direction, compute *two* half-warps that meet in the middle,
+
+$$
+\phi_{\text{fwd}} \circ \phi_{\text{inv}}^{-1} = \mathrm{Id}
+$$
+
+by construction. This symmetry removes a class of biases (the result no longer depends on which image you called "moving") and is the reason ANTs SyN has been near-the-top in every published registration benchmark since [Klein et al., 2009](https://doi.org/10.1016/j.neuroimage.2008.12.037).
+
+#### Worked example — antsRegistrationSyN.sh
+
+```bash
+antsRegistrationSyN.sh \
+    -d 3 \                          # dimensionality (3D volume)
+    -f fixed.nii.gz \               # fixed / target image
+    -m moving.nii.gz \              # moving / source image
+    -o out \                        # output prefix
+    -t s                            # transform type: s = rigid + affine + SyN
+```
+
+Outputs:
+
+| File | What it is |
+|---|---|
+| `out0GenericAffine.mat` | the rigid + affine part as an ITK transform |
+| `out1Warp.nii.gz` | forward non-linear displacement field (moving → fixed) |
+| `out1InverseWarp.nii.gz` | inverse non-linear displacement field (fixed → moving) |
+| `outWarped.nii.gz` | the moving image resampled into the fixed space |
+
+The `-t` flag selects the pipeline: `r` (rigid only), `a` (rigid + affine), `s` (rigid + affine + SyN), `b` (rigid + affine + B-spline SyN). For atlas-based segmentation, always use `s` or `b` — a pure affine is too rigid to absorb inter-subject anatomy.
+
+#### Practical note — verifying the diffeomorphism
+
+Most "registration failed" tickets in atlas-based studies turn out to be **non-diffeomorphic warps** rather than bad similarity fits. Two cheap sanity checks:
+
+1. **Compose forward + inverse** with `antsApplyTransforms` and confirm the result is near-identity (max displacement < 1 voxel). A non-zero residual is the easiest detector of folding.
+2. **Compute the Jacobian determinant** with `CreateJacobianDeterminantImage 3 out1Warp.nii.gz jac.nii.gz`. If `min(jac) < 0` anywhere inside the brain mask, the warp folds — drop the cost-function smoothing or revisit pre-alignment.
+
+For a deeper tour see the [ANTs wiki](https://github.com/ANTsX/ANTs/wiki).
+
+#### Symmetric vs asymmetric formulations — the unbiased-atlas consequence
+
+A registration algorithm is **asymmetric** if swapping the roles of moving and fixed (then composing with an inverse) gives a different answer. Asymmetry biases group templates: an asymmetric algorithm anchored at subject 0 produces a "template" that is really subject 0 with slight blur. SyN is symmetric *by construction* — it parameterises two velocity fields, integrates each from $t=0$ to $t=1/2$, and matches at the geodesic midpoint:
+
+$$
+\hat v_M, \hat v_F = \arg\min_{v_M, v_F}\; D\bigl(F \circ \phi_F^{1/2},\, M \circ \phi_M^{1/2}\bigr) + \lambda \bigl(\|L v_M\|^2 + \|L v_F\|^2\bigr)
+$$
+
+The final transform is the composition $\phi_F^{-1/2} \circ \phi_M^{1/2}$. Running with roles swapped yields the same warp up to numerical noise. For **unbiased atlas building** (see [section 4: group template construction](#group-template-construction)) this matters: the average geometry depends on the cohort, not the indexing.
+
+#### Why ANTs SyN dominates benchmarks
+
+The [Klein et al., 2009](https://doi.org/10.1016/j.neuroimage.2008.12.037) evaluation of 14 nonlinear deformation algorithms placed SyN (and the closely related [ART](https://www.nitrc.org/projects/art/)) at the top of every overlap-based ranking. The reasons are not exotic — they compound:
+
+- **Time-varying velocity-field parameterisation.** Full diffeomorphism group, guaranteed inverse, no folding.
+- **Cross-correlation metric over local windows.** $D_{\mathrm{NCC}}$ over patches is robust to bias-field drift and partial-volume effects, where MI estimated globally is noisier.
+- **Symmetric forward + inverse integration.** Removes the bias direction of every other algorithm in the Klein comparison.
+- **Aggressive multi-scale optimisation.** Long coarse-to-fine schedule with sane defaults — most users never tune it.
+- **Robust defaults out of the box.** `antsRegistrationSyN.sh` sets sensible smoothing, shrink factors, and convergence per pyramid level.
+
+What the alternatives trade off:
+
+| Tool | Parameterisation | Strength | Trade-off |
+| --- | --- | --- | --- |
+| [FSL FNIRT](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FNIRT) | B-spline grid | Fast, integrated with FSL | No diffeomorphism guarantee; lower Klein-2009 scores |
+| [SPM DARTEL](https://doi.org/10.1016/j.neuroimage.2007.07.007) | Stationary velocity | Diffeomorphic; tight SPM integration | Stationary $v$; population-template focus |
+| [NiftyReg `reg_f3d`](https://github.com/KCL-BMEIS/niftyreg) | B-spline grid | Very fast; GPU options | No diffeomorphism guarantee |
+| [ANTs SyN](https://doi.org/10.1016/j.media.2007.06.004) | Time-varying velocity | Top of Klein 2009; symmetric; robust | Slowest of the four |
+| [VoxelMorph](https://doi.org/10.1109/TMI.2019.2897538) | Learned U-Net | ~100 ms inference | OOD risk; quality depends on training distribution |
+
+If runtime is not the bottleneck, SyN is the safe default. If it is, [VoxelMorph](https://doi.org/10.1109/TMI.2019.2897538) trained on your distribution is the modern alternative; otherwise [FNIRT](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FNIRT) or [NiftyReg](https://github.com/KCL-BMEIS/niftyreg) for speed at the cost of explicit folding checks.
+
+#### Diffeomorphic atlas building
+
+A study-specific template is more than the voxelwise average of registered images. Naive averaging biases toward whichever subject was used as the registration anchor and blurs anatomy that is misaligned. The ANTs [`antsMultivariateTemplateConstruction2.sh`](https://github.com/ANTsX/ANTs/blob/master/Scripts/antsMultivariateTemplateConstruction2.sh) workflow (descended from `buildtemplateparallel.sh`) computes the **iterative geodesic mean**:
+
+1. Initialise the template as a linear average of all subjects.
+2. Register every subject to the current template with SyN.
+3. Average the warped images and the *inverse warps*. The inverse-warp average encodes the residual bias of the current template.
+4. Apply the average inverse warp to the current template, pulling it toward the cohort mean in geometry as well as intensity.
+5. Repeat to convergence (typically 4–6 iterations).
+
+The fixed point is a template at the [Fréchet mean](https://en.wikipedia.org/wiki/Fr%C3%A9chet_mean) of the cohort under the diffeomorphism metric — equidistant in deformation-space from every subject. This is qualitatively different from a Euclidean average of pre-registered images, which is biased by the anchor and has blurred boundaries wherever subjects disagree. The same logic underpins [TemplateFlow's](https://www.templateflow.org/browse/) construction of versioned cohort templates and is why pediatric / disease-specific atlases must be rebuilt rather than re-averaged.
+
 ## 3. Steps — generic registration pipeline
 
 1. **Preprocess** both images: bias correction, intensity normalisation, skull strip (if appropriate).
@@ -227,6 +331,10 @@ VoxelMorph ([Balakrishnan et al., 2019](https://doi.org/10.1109/TMI.2019.2897538
 10. **Balakrishnan G, Zhao A, Sabuncu MR, Guttag J, Dalca AV.** VoxelMorph: a learning framework for deformable medical image registration. *IEEE Trans Med Imaging.* 2019;38(8):1788-1800. [doi:10.1109/TMI.2019.2897538](https://doi.org/10.1109/TMI.2019.2897538)
 11. **Chen J, Frey EC, He Y, et al.** TransMorph: transformer for unsupervised medical image registration. *Med Image Anal.* 2022;82:102615. [doi:10.1016/j.media.2022.102615](https://doi.org/10.1016/j.media.2022.102615)
 12. **Klein A, Andersson J, Ardekani BA, et al.** Evaluation of 14 nonlinear deformation algorithms applied to human brain MRI registration. *NeuroImage.* 2009;46(3):786-802. [doi:10.1016/j.neuroimage.2008.12.037](https://doi.org/10.1016/j.neuroimage.2008.12.037) — landmark benchmarking paper.
+13. **ANTs documentation and wiki.** [https://github.com/ANTsX/ANTs/wiki](https://github.com/ANTsX/ANTs/wiki) — reference for `antsRegistrationSyN.sh`, transform conventions, and Jacobian / inverse-consistency tooling.
+14. **Modat M, Ridgway GR, Taylor ZA, et al.** Fast free-form deformation using graphics processing units (NiftyReg `reg_f3d`). *Comput Methods Programs Biomed.* 2010;98(3):278-284. [doi:10.1016/j.cmpb.2009.09.002](https://doi.org/10.1016/j.cmpb.2009.09.002)
+15. **NiftyReg.** [https://github.com/KCL-BMEIS/niftyreg](https://github.com/KCL-BMEIS/niftyreg) — B-spline free-form deformation registration tool.
+16. **antsMultivariateTemplateConstruction2.sh.** [https://github.com/ANTsX/ANTs/blob/master/Scripts/antsMultivariateTemplateConstruction2.sh](https://github.com/ANTsX/ANTs/blob/master/Scripts/antsMultivariateTemplateConstruction2.sh) — diffeomorphic atlas building workflow.
 
 ## Exercises
 

@@ -2,7 +2,7 @@
 
 > MRI tells you where. MRS tells you what — in millimolar concentrations, from a single voxel, if you shimmed it.
 
-Course map: Why MRS → chemical shift basics → localisation (PRESS, STEAM, sLASER) → MEGA-PRESS for GABA → CSI / MRSI → quantification (LCModel, Osprey) → metabolite catalogue → reporting (MRSinMRS) → pitfalls → clinical → worked snippet → references.
+Course map: Why MRS → chemical shift basics → localisation (PRESS, STEAM, sLASER) → MEGA-PRESS for GABA → CSI / MRSI → quantification ([LCModel](http://s-provencher.com/lcmodel.shtml), [Osprey](https://schorschinengel.github.io/osprey/)) → metabolite catalogue → reporting ([MRSinMRS](https://www.mrshub.org/mrsinmrs)) → pitfalls → clinical → worked snippet → references.
 
 ## 1. Learning objectives
 
@@ -67,7 +67,7 @@ Phase-encode in 2 or 3 dimensions to get a metabolite map across a slab.
 
 - **Water suppression**: CHESS / VAPOR — frequency-selective saturation. Residual water swamps the upfield peaks if mistuned.
 
-- **Eddy current correction**: phase the FID against a non-water-suppressed reference acquisition (Klose 1990). Mandatory in LCModel input.
+- **Eddy current correction**: phase the FID against a non-water-suppressed reference acquisition (Klose 1990). Mandatory in [LCModel](http://s-provencher.com/lcmodel.shtml) input.
 
 ## 7. MEGA-PRESS for GABA
 
@@ -79,21 +79,23 @@ GABA-H4 (3 ppm) overlaps creatine. MEGA-PRESS alternates an editing 180° pulse 
 
 - Subtract ON − OFF → edited spectrum shows GABA at 3 ppm and Glx at 3.75 ppm; everything else cancels.
 
-Frequency drift (a few Hz over 10 min) blows the subtraction up — use frequency/phase correction (Near 2015), and check Gannet QA.
+Frequency drift (a few Hz over 10 min) blows the subtraction up — use frequency/phase correction (Near 2015), and check [Gannet](https://markmikkelsen.github.io/Gannet-docs/) QA.
 
 ## 8. Quantification
 
 ### 8.1 Model fitting
 
-- **LCModel** (Provencher 1993) — gold standard. Linear combination of in-vitro basis set; outputs concentrations and Cramér–Rao lower bounds (CRLB).
+- **[LCModel](http://s-provencher.com/lcmodel.shtml)** (Provencher 1993) — gold standard. Linear combination of in-vitro basis set; outputs concentrations and Cramér–Rao lower bounds (CRLB).
 
-- **Tarquin** — open-source LCModel-like.
+- **[Tarquin](http://tarquin.sourceforge.net/)** — open-source LCModel-like.
 
-- **Osprey** (Oeltzschner 2020) — open-source, BIDS-aware, MATLAB.
+- **[Osprey](https://schorschinengel.github.io/osprey/)** (Oeltzschner 2020) — open-source, BIDS-aware, MATLAB.
 
-- **GANNET** — MEGA-PRESS GABA only, MATLAB.
+- **[GANNET](https://markmikkelsen.github.io/Gannet-docs/)** — MEGA-PRESS GABA only, MATLAB.
 
-- **FSL-MRS** — Python/FSL pipeline with Bayesian fitting.
+- **[FSL-MRS](https://open.win.ox.ac.uk/pages/fsl/fsl_mrs/)** — Python/FSL pipeline with Bayesian fitting.
+
+- **[jMRUI](http://www.jmrui.eu/)** — Java GUI for time-domain quantification (AMARES, QUEST).
 
 ### 8.2 Concentration units
 
@@ -122,7 +124,7 @@ NAA/Cr, Cho/Cr ratios are commonly reported but mask Cr changes — prefer absol
 
 ## 10. Reporting standards
 
-The **MRSinMRS** checklist (Lin 2021) lists ~30 mandatory fields covering hardware, sequence (TE, TR, voxel, suppression), processing (line broadening, eddy correction), quantification (basis set, reference, CRLB), and data sharing. Reviewers increasingly require it.
+The **[MRSinMRS](https://www.mrshub.org/mrsinmrs)** checklist (Lin 2021) lists ~30 mandatory fields covering hardware, sequence (TE, TR, voxel, suppression), processing (line broadening, eddy correction), quantification (basis set, reference, CRLB), and data sharing. Reviewers increasingly require it. The [MRSHub](https://www.mrshub.org/) hosts the form, example basis sets, code, and community-maintained tutorials.
 
 ## 11. Pitfalls
 
@@ -152,7 +154,7 @@ The **MRSinMRS** checklist (Lin 2021) lists ~30 mandatory fields covering hardwa
 
 ## 13. Worked example
 
-### 13.1 Suspect (Python) — load and plot
+### 13.1 [suspect](https://suspect.readthedocs.io/) (Python) — load and plot
 
 ```python
 import suspect
@@ -185,7 +187,27 @@ matlab -batch "OspreyJob('OspreyJob_subj01.json'); \
 
 Output: per-metabolite concentrations, CRLBs, water-scaled and tissue-corrected.
 
-## 14. References
+## 14. External tools & resources
+
+### Quantification software
+
+- [LCModel](http://s-provencher.com/lcmodel.shtml) — historical gold standard for linear-combination model fitting.
+- [Osprey](https://schorschinengel.github.io/osprey/) — open-source MATLAB pipeline, BIDS-aware, modern community standard.
+- [Tarquin](http://tarquin.sourceforge.net/) — open-source command-line quantification.
+- [jMRUI](http://www.jmrui.eu/) — time-domain Java GUI (AMARES, QUEST).
+- [GANNET](https://markmikkelsen.github.io/Gannet-docs/) — MEGA-PRESS GABA-edited pipeline.
+- [FSL-MRS](https://open.win.ox.ac.uk/pages/fsl/fsl_mrs/) — Python/FSL with Bayesian fitting.
+
+### Python tooling
+
+- [suspect](https://suspect.readthedocs.io/) — vendor-format I/O, frequency/phase correction, plotting.
+
+### Reporting and community
+
+- [MRSinMRS](https://www.mrshub.org/mrsinmrs) — minimum reporting checklist (Lin 2021).
+- [MRSHub](https://www.mrshub.org/) — community hub: basis sets, code, tutorials, datasets.
+
+## 15. References
 
 1. Lin A, Andronesi O, Bogner W, et al. Minimum Reporting Standards for in vivo Magnetic Resonance Spectroscopy (MRSinMRS): Experts' consensus recommendations. *NMR Biomed.* 2021;34(5):e4484. https://doi.org/10.1002/nbm.4484
 

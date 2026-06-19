@@ -2,7 +2,7 @@
 
 > A perfusion measurement that uses blood water as an endogenous tracer. No contrast injection, just clever RF labeling and a subtraction.
 
-Course map: Physics of magnetic labeling → label–control subtraction → PASL / CASL / pCASL → ISMRM consensus protocol → Buxton kinetic model → calibration (M0) → multi-PLD for ATT → artifacts → software → clinical use → worked Python pseudocode → references.
+Course map: Physics of magnetic labeling → label–control subtraction → PASL / CASL / pCASL → [ISMRM consensus protocol](https://doi.org/10.1002/mrm.25197) → Buxton kinetic model → calibration (M0) → multi-PLD for ATT → artifacts → software → clinical use → worked Python pseudocode → references.
 
 ## 1. Learning objectives
 
@@ -44,9 +44,9 @@ Once labeled, blood water magnetisation relaxes at $T_{1,\mathrm{blood}}$ (~1650
 | **CASL** ( continuous) | Long RF + gradient at neck | ~0.68 | More signal | High SAR, magnetisation transfer artifact |
 | **pCASL** ( pseudo-continuous) | Train of short RF + gradient pulses | ~0.85 | High SNR, low SAR, vendor-supported | Sensitive to off-resonance at labeling plane |
 
-**pCASL is the recommended default** (Alsop 2015 consensus).
+**pCASL is the recommended default** ([Alsop 2015 consensus](https://doi.org/10.1002/mrm.25197)).
 
-## 4. ISMRM consensus protocol (Alsop 2015)
+## 4. ISMRM consensus protocol ([Alsop 2015](https://doi.org/10.1002/mrm.25197))
 
 Single-PLD pCASL for cognitively normal adults:
 
@@ -137,10 +137,10 @@ Cost: longer scan (5–8 min for multi-PLD vs 4 min for single-PLD).
 
 | Tool | Strength |
 |---|---|
-| **ExploreASL** | Multi-vendor pipeline, QC dashboards, BIDS-aware |
-| **oxford_asl / BASIL** (FSL) | Bayesian kinetic-model fitting, multi-PLD |
-| **ASLPrep** | Nipype-based, BIDS-derivatives output |
-| **Cereflow, ASL-MRICloud** | Web / batch services |
+| **[ExploreASL](https://exploreasl.github.io/Documentation/)** | Multi-vendor pipeline, QC dashboards, [BIDS](https://bids-specification.readthedocs.io/en/stable/modality-specific-files/magnetic-resonance-imaging-data.html#arterial-spin-labeling-perfusion-data)-aware |
+| **[oxford_asl](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BASIL) / [BASIL](https://asl-docs.readthedocs.io/)** (FSL) | Bayesian kinetic-model fitting, multi-PLD |
+| **[ASLPrep](https://aslprep.readthedocs.io/)** | [Nipype](https://nipype.readthedocs.io/)-based, BIDS-derivatives output |
+| **[ASL-MRICloud](https://braingps.mricloud.org/)** | Web / batch services |
 
 ## 10. Clinical use
 
@@ -189,7 +189,23 @@ print("Mean GM CBF:", cbf[mask].mean(), "mL/100g/min  (expect ~50)")
 
 Sanity check: cortical GM CBF should land at 40–70 mL/100g/min, WM ~20–30. Anything outside is acquisition or pipeline failure, not biology.
 
-## 12. References
+## 12. External tools & resources
+
+### Processing pipelines
+
+- [ExploreASL](https://exploreasl.github.io/Documentation/) — multi-vendor, multi-site ASL pipeline with QC dashboards and BIDS support.
+- [ASLPrep](https://aslprep.readthedocs.io/) — Nipype-based BIDS App producing BIDS-Derivatives outputs.
+- [BASIL / oxford_asl (FSL)](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BASIL) — Bayesian kinetic-model fitting for single- and multi-PLD ASL.
+- [BASIL documentation](https://asl-docs.readthedocs.io/) — current readthedocs entry point for the BASIL toolbox.
+- [ASL-MRICloud](https://braingps.mricloud.org/) — web-based ASL quantification service.
+- [nibabel](https://nipy.org/nibabel/) — NIfTI I/O used in the worked example.
+
+### Standards and consensus
+
+- [ISMRM ASL consensus (Alsop 2015)](https://doi.org/10.1002/mrm.25197) — recommended implementation for clinical ASL.
+- [BIDS ASL extension](https://bids-specification.readthedocs.io/en/stable/modality-specific-files/magnetic-resonance-imaging-data.html#arterial-spin-labeling-perfusion-data) — standard layout for ASL data.
+
+## 13. References
 
 1. Alsop DC, Detre JA, Golay X, et al. Recommended implementation of arterial spin-labeled perfusion MRI for clinical applications: a consensus of the ISMRM perfusion study group and the European consortium for ASL in dementia. *Magn Reson Med.* 2015;73(1):102–116. https://doi.org/10.1002/mrm.25197
 

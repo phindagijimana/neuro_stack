@@ -48,7 +48,7 @@ Linearise as
 
 then $T_1 = -\mathrm{TR}/\ln(\mathrm{slope})$. Fast (~5 min), but exquisitely sensitive to $B_1^+$ inhomogeneity — needs a separate $B_1$ map (AFI, Bloch–Siegert, DREAM).
 
-### 3.2 MP2RAGE ( Marques 2010)
+### 3.2 [MP2RAGE](https://github.com/JosePMarques/MP2RAGE-related-scripts) (Marques 2010)
 
 Two GRE blocks at different TIs after inversion. Combine as
 
@@ -117,9 +117,9 @@ More portable than MTR; the backbone of MPM.
 
 Two-pool Henkelman / Sled–Pike model fit to multi-offset MT-weighted data → free-pool $T_1$, $T_2$; macromolecular pool size $f$, exchange rate $k$. Expensive (10+ measurements), but $f$ correlates with myelin content.
 
-### 5.4 MPM ( Weiskopf 2013)
+### 5.4 MPM (Weiskopf 2013)
 
-Multi-Parameter Mapping: a single ~20-min protocol of T1w, PDw, MTw multi-echo FLASH plus a B1 map yields R1, R2*, PD, and MTsat maps in subject space — standard kit for cortical microstructure / myelin proxies.
+Multi-Parameter Mapping: a single ~20-min protocol of T1w, PDw, MTw multi-echo FLASH plus a B1 map yields R1, R2*, PD, and MTsat maps in subject space — standard kit for cortical microstructure / myelin proxies. The reference MPM pipeline is the [hMRI toolbox](https://hmri-group.github.io/hMRI-toolbox/) for SPM.
 
 ## 6. T1ρ
 
@@ -131,7 +131,7 @@ S(\mathrm{TSL}) = S_0\,e^{-\mathrm{TSL}/T_{1\rho}}.
 
 Sensitive to proteoglycan / macromolecule changes. Used in cartilage; emerging in brain (AD, MS).
 
-## 7. Synthetic MRI (MAGiC, SyMRI)
+## 7. Synthetic MRI (MAGiC, [SyMRI](https://syntheticmr.com/))
 
 A single ~5 min multi-delay multi-echo acquisition fits T1, T2, PD per voxel; arbitrary weighted contrasts (T1w, T2w, FLAIR, STIR) are then synthesised by Bloch simulation.
 
@@ -156,7 +156,7 @@ flowchart LR
     B & C & D & E --> F[Different T1 by 5-10%]
 ```
 
-- T1 estimates vary 5–10% between vendors at 3T, even with matched protocols (ISMRM RB consortium).
+- T1 estimates vary 5–10% between vendors at 3T, even with matched protocols ([ISMRM RB consortium](https://www.ismrm.org/study-groups/reproducible-research/)).
 
 - VFA needs a B1 map; if it drifts, T1 drifts.
 
@@ -166,7 +166,7 @@ flowchart LR
 
 ## 9. MR fingerprinting (brief)
 
-MRF (Ma 2013) uses pseudorandom sequence parameters and matches the resulting signal evolution against a precomputed dictionary of Bloch simulations.
+MRF ([Ma 2013](https://doi.org/10.1038/nature11971)) uses pseudorandom sequence parameters and matches the resulting signal evolution against a precomputed dictionary of Bloch simulations.
 
 - Outputs T1, T2, PD, sometimes B0/B1 from a single ~10 s/slice acquisition.
 
@@ -178,12 +178,14 @@ MRF (Ma 2013) uses pseudorandom sequence parameters and matches the resulting si
 
 | Tool | Coverage |
 |---|---|
-| **qMRLab** (MATLAB) | T1, T2, T2*, MT, qMT, MWF, NODDI, IVIM — broad |
-| **hMRI toolbox** (SPM) | MPM pipeline (R1, R2*, PD, MTsat) |
-| **mrQ** | VFA T1 with B1 correction |
-| **MP2RAGE LUT scripts** (Marques lab) | UNI → T1 map |
-| **Pulseq + open MR fingerprinting** | Reproducible sequences |
-| **DESPOT1/2** (mcverter, mrtools) | VFA-style T1 / T2 |
+| **[qMRLab](https://qmrlab.org/)** (MATLAB) | T1, T2, T2*, MT, qMT, MWF, NODDI, IVIM — broad |
+| **[hMRI toolbox](https://hmri-group.github.io/hMRI-toolbox/)** (SPM) | MPM pipeline (R1, R2*, PD, MTsat) |
+| **[mrQ](https://github.com/mezera/mrQ)** | VFA T1 with B1 correction |
+| **[MP2RAGE LUT scripts](https://github.com/JosePMarques/MP2RAGE-related-scripts)** (Marques lab) | UNI → T1 map |
+| **[Pulseq](https://pulseq.github.io/)** + open MR fingerprinting | Reproducible sequences |
+| **[QSMxT](https://qsmxt.github.io/QSMxT/)** | End-to-end QSM pipeline |
+| **[SEPIA](https://sepia-documentation.readthedocs.io/)** | QSM toolbox covering background-field removal and dipole inversion |
+| **[MRiLab](http://mrilab.sourceforge.net/)** | Numerical Bloch simulator for sequence design |
 
 ## 11. Use cases
 
@@ -236,7 +238,33 @@ nib.save(nib.Nifti1Image(T1, nib.load("spgr_fa05.nii.gz").affine), "T1map.nii.gz
 
 Expected adult cortical T1 at 3T: 1300–1500 ms; WM 800–1000 ms; CSF >4000 ms.
 
-## 14. References
+## 14. External tools & resources
+
+### General qMRI toolboxes
+
+- [qMRLab](https://qmrlab.org/) — MATLAB/Octave umbrella for T1, T2, T2*, MT, qMT, MWF, NODDI, IVIM.
+- [hMRI toolbox](https://hmri-group.github.io/hMRI-toolbox/) — SPM-based MPM pipeline (R1, R2*, PD, MTsat).
+- [mrQ](https://github.com/mezera/mrQ) — VFA T1 with B1 correction.
+
+### T1 mapping
+
+- [MP2RAGE-related scripts (José P. Marques)](https://github.com/JosePMarques/MP2RAGE-related-scripts) — UNI → T1 lookup, background denoising, recipes.
+
+### QSM and susceptibility
+
+- [QSMxT](https://qsmxt.github.io/QSMxT/) — automated, containerised QSM pipeline.
+- [SEPIA](https://sepia-documentation.readthedocs.io/) — modular QSM toolbox.
+
+### Simulation and sequences
+
+- [MRiLab](http://mrilab.sourceforge.net/) — GPU Bloch-equation simulator for qMRI sequence design.
+- [Pulseq](https://pulseq.github.io/) — open vendor-neutral pulse sequence framework.
+
+### Vendor synthetic MRI
+
+- [SyMRI](https://syntheticmr.com/) — commercial synthetic MRI / quantification platform.
+
+## 15. References
 
 1. Marques JP, et al. MP2RAGE, a self bias-field corrected sequence for improved segmentation and T1-mapping at high field. *Neuroimage.* 2010;49(2):1271–1281. https://doi.org/10.1016/j.neuroimage.2010.07.024
 

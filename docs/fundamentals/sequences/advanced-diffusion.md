@@ -127,9 +127,9 @@ S(b, \mathbf{g}) = \sum_{t \in \{\mathrm{WM, GM, CSF}\}} \int_{S^2} R_t(b, \math
 
 - Required input for biologically meaningful tractography near cortex.
 
-- Workflow: `dwi2response dhollander` → `dwi2fod msmt_csd` → `tckgen` (MRtrix3).
+- Workflow: `dwi2response dhollander` → `dwi2fod msmt_csd` → `tckgen` ([MRtrix3](https://mrtrix.readthedocs.io/)).
 
-## 8. Free-water imaging ( Pasternak)
+## 8. Free-water imaging (Pasternak)
 
 A two-compartment model:
 
@@ -180,12 +180,13 @@ Practical knobs:
 
 | Tool | Models | Notes |
 |---|---|---|
-| **AMICO** | NODDI, ActiveAx | Accelerated linear NODDI — minutes per brain |
-| **NODDI-Toolbox** (MATLAB) | NODDI | Reference implementation, slow |
-| **MRtrix3** | DTI, DKI, CSD, MSMT-CSD, fixel-based | Industry standard for tractography |
-| **DIPY** | DTI, DKI, NODDI (via cvxpy), CSD, free-water | Pythonic, scriptable |
-| **FSL** | DTI, BedpostX (ball-and-sticks), `qboot` | Probabilistic tractography pipeline |
-| **TractSeg** | Bundle segmentation (deep learning) | Consumes CSD peaks |
+| **[AMICO](https://github.com/daducci/AMICO)** | NODDI, ActiveAx | Accelerated linear NODDI — minutes per brain |
+| **[NODDI-Toolbox](http://mig.cs.ucl.ac.uk/index.php?n=Tutorial.NODDImatlab)** (MATLAB) | NODDI | Reference implementation, slow |
+| **[MRtrix3](https://mrtrix.readthedocs.io/)** | DTI, DKI, CSD, MSMT-CSD, fixel-based | Industry standard for tractography |
+| **[DIPY](https://dipy.org/)** | DTI, DKI, NODDI (via cvxpy), CSD, free-water | Pythonic, scriptable |
+| **[FSL FDT](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT)** | DTI, BedpostX (ball-and-sticks), `qboot` | Probabilistic tractography pipeline |
+| **[TractSeg](https://github.com/MIC-DKFZ/TractSeg)** | Bundle segmentation (deep learning) | Consumes CSD peaks |
+| **[QSIPrep](https://qsiprep.readthedocs.io/)** | BIDS App preprocessing for multi-shell dMRI | Wraps `topup`, `eddy`, distortion + denoising |
 
 ## 12. Worked example — NODDI in AMICO
 
@@ -243,7 +244,33 @@ mk = dki_fit.mk(min_kurtosis=0, max_kurtosis=3)
 
 - **Paediatric development**: NDI and MK track myelination trajectories.
 
-## 15. References
+## 15. External tools & resources
+
+### Reconstruction and modelling
+
+- [MRtrix3](https://mrtrix.readthedocs.io/) — DTI, DKI, CSD/MSMT-CSD, tractography, fixel-based analysis.
+- [DIPY](https://dipy.org/) — Python library covering DTI, DKI, NODDI, CSD, free-water, registration, tractography.
+- [FSL FDT](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT) — DTI, BedpostX, ProbtrackX, `eddy`, `topup`.
+
+### Microstructure (NODDI etc.)
+
+- [AMICO](https://github.com/daducci/AMICO) — accelerated linear NODDI / ActiveAx fitting.
+- [NODDI Matlab toolbox](http://mig.cs.ucl.ac.uk/index.php?n=Tutorial.NODDImatlab) — original reference NODDI implementation.
+
+### Preprocessing and pipelines
+
+- [QSIPrep](https://qsiprep.readthedocs.io/) — BIDS App for multi-shell dMRI preprocessing.
+
+### Tractography downstream
+
+- [TractSeg](https://github.com/MIC-DKFZ/TractSeg) — deep-learning bundle segmentation from CSD peaks.
+- [Tractometer](http://www.tractometer.org/) — community benchmark for tractography algorithm validation.
+
+### Reference acquisition protocols
+
+- [Connectome HCP DWI protocol](https://www.humanconnectome.org/study/hcp-young-adult/document/1200-subjects-data-release) — multi-shell HARDI protocol and parameters from HCP Young Adult.
+
+## 16. References
 
 1. Zhang H, Schneider T, Wheeler-Kingshott CA, Alexander DC. NODDI: practical in vivo neurite orientation dispersion and density imaging of the human brain. *Neuroimage.* 2012;61(4):1000–1016. https://doi.org/10.1016/j.neuroimage.2012.03.072
 

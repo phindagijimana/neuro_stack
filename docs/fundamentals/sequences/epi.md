@@ -142,7 +142,119 @@ These are not raw DICOM; they are what pipelines produce after preprocessing (na
 
 ### 7.2 How DWI-EPI outputs are used
 
-## 8. Clinical and research uses
+## 8. Multi-echo EPI — design and analysis
+
+A standard BOLD EPI run samples a single TE near the grey-matter T2* (~30 ms at 3 T). The BOLD signal is approximately
+
+$$
+S(\text{TE}) = S_0\,\exp(-\text{TE}/T_2^*),
+$$
+
+so a single-TE acquisition cannot separate **fluctuations in $S_0$** (motion, inflow, scaling artefacts) from **fluctuations in $T_2^*$** (the actual BOLD effect). Multi-echo EPI fixes that by acquiring 2–5 echoes per excitation along the same EPI train.
+
+**Typical 3 T protocol.**
+
+| Echo | TE (ms) | Role |
+|---|---|---|
+| TE₁ | 14 | Short — robust to dropout, picks up inflow / $S_0$ effects |
+| TE₂ | 30 | Near grey-matter T2* — primary BOLD weighting |
+| TE₃ | 46 | Long — sensitises to long-T2* structures, helps T2* fit |
+| TE₄–₅ | 60–80 (optional) | Improves fit in CSF / long-T2* voxels |
+
+The same RF excitation feeds all echoes — each echo is just another EPI readout train at a different TE. Cost: per-volume readout time grows roughly linearly with the number of echoes, so TR lengthens and slice coverage per second drops.
+
+**Voxelwise fit.** Taking $\ln S(\text{TE}) = \ln S_0 - \text{TE}/T_2^*$ gives a linear fit per voxel per TR:
+
+$$
+\hat{T_2^*}(\mathbf{r}, t) = -\frac{\sum_i (\text{TE}_i - \overline{\text{TE}})\,\ln S_i}{\sum_i (\text{TE}_i - \overline{\text{TE}})^2}.
+$$
+
+This yields a $T_2^*$ time series and an $S_0$ time series per voxel.
+
+**ME-ICA / tedana.** The TE-dependence of each ICA component tells you whether it is BOLD-like:
+
+- **BOLD-like signals** scale linearly with TE in their $\ln$-amplitude → high $\kappa$ (TE-dependence) score.
+- **Non-BOLD nuisance** (motion, scanner drift, swallowing) is TE-independent → high $\rho$ (TE-independence) score.
+
+[tedana](https://tedana.readthedocs.io/) ( [DuPre 2021](https://doi.org/10.21105/joss.03669), implementing the ME-ICA framework of [Kundu 2012](https://doi.org/10.1016/j.neuroimage.2011.12.028)) classifies components and projects out the non-BOLD subspace — substantially cleaner than ICA-AROMA at high motion. The **optimal-combination** weighting was introduced by [Posse 1999](https://doi.org/10.1002/(SICI)1522-2594(199907)42:1<87::AID-MRM13>3.0.CO;2-O): each echo is weighted by $\text{TE}_i \cdot \exp(-\text{TE}_i/T_2^*)$, the BOLD-CNR-optimal weight at the voxel's local $T_2^*$. This recovers BOLD signal in orbitofrontal and temporal regions where the single-TE protocol drops out.
+
+**Pipeline integration.** [tedana](https://tedana.readthedocs.io/en/stable/) runs as a stand-alone step after fMRIPrep, or via [AFNI's `afni_proc.py` with the `-combine OC` / `-combine tedana` options](https://afni.nimh.nih.gov/pub/dist/doc/program_help/afni_proc.py.html) — both consume per-echo NIfTI inputs and emit a denoised, optimally-combined BOLD series. fMRIPrep ≥ 22.x can pass through to tedana via the `--me-output-echos` flag.
+
+**When to use it.** Cortical regions near sinuses (OFC, ventral temporal), high-motion populations (paediatric, clinical), studies aimed at subcortical structures. Cost: longer TR (typically 1.5–2 s for whole-brain at 2.5 mm vs. 0.8–1.0 s for single-echo with multi-band), more complex reconstruction, larger dataset.
+
+## 9. Echo spacing and distortion — the math
+
+The phase-encoded image is distorted because off-resonance frequencies $\Delta f(\mathbf{r})$ accumulate phase along the long readout train. The **echo spacing (ES)** — time between adjacent echoes in the EPI train — sets the effective phase-encode bandwidth:
+
+$$
+\text{BW}_\text{PE} = \frac{1}{\text{ES} \cdot N_\text{PE}}\quad\text{(Hz/pixel along PE)}.
+$$
+
+A spin at off-resonance $\Delta f$ Hz shifts by
+
+$$
+\boxed{\;\Delta y_\text{pix} = \Delta f \cdot \text{ES} \cdot N_\text{PE}\;}
+$$
+
+pixels along the phase-encode direction. Note that increasing matrix size $N_\text{PE}$ **worsens distortion** at fixed ES — every extra k-space line is more time over which off-resonance phase accumulates.
+
+**Worked numerical example.** Matrix 64×64, ES = 0.5 ms, off-resonance $\Delta f = 100$ Hz at an air-tissue interface:
+
+$$
+\Delta y_\text{pix} = 100\;\text{Hz} \times 0.5\times 10^{-3}\;\text{s} \times 64 = 3.2\ \text{pixels}.
+$$
+
+For 3 mm voxels that is a ~1 cm displacement of orbitofrontal cortex — large enough to invalidate naive coregistration to T1.
+
+**How to shrink ES (and therefore distortion).**
+
+- **In-plane parallel imaging (GRAPPA / SENSE).** Skip every R-th k-space line, reconstruct from coil sensitivities. Effective ES per *acquired* line is the same, but $N_\text{PE,acquired} = N_\text{PE} / R$ → distortion scales as $1/R$. Cost: $\sqrt{R}$ SNR loss plus $g$-factor noise amplification.
+- **Partial Fourier.** Acquire ~5/8 of k-space and synthesise the rest from conjugate symmetry. Roughly halves readout duration at the cost of slight blurring and reduced SNR.
+- **Multi-band (SMS / simultaneous-multi-slice) slice acceleration.** Excite multiple slices at once; unmix with coil sensitivities. This shortens TR by the multi-band factor *but does not reduce per-slice ES or distortion*. Multi-band buys temporal resolution; in-plane acceleration buys geometric fidelity.
+- **Higher receive bandwidth / stronger gradients.** Reduces ES directly — limited by hardware and peripheral nerve stimulation.
+
+**Rule of thumb.** Multi-band (slice) and in-plane (PE) acceleration solve different problems. A modern HCP-style protocol uses both: in-plane R = 2 to halve distortion, multi-band 4–8 to keep TR short.
+
+## 10. Off-resonance correction beyond topup
+
+Four families of method, in order of common deployment:
+
+**Field-map based ([Jezzard & Balaban 1995](https://doi.org/10.1002/mrm.1910340111)).** Acquire a dual-echo gradient-echo at the start of the session — typically [`gre_field_mapping`](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/01-magnetic-resonance-imaging-data.html#case-1-phase-difference-image-and-at-least-one-magnitude-image) (Siemens) or a vendor-specific dual-echo product. The phase difference between echoes gives a $\Delta B_0$ map:
+
+$$
+\Delta f(\mathbf{r}) = \frac{\phi_2(\mathbf{r}) - \phi_1(\mathbf{r})}{2\pi\,(\text{TE}_2 - \text{TE}_1)}.
+$$
+
+Plug into the pixel-shift formula above and unwarp (FSL [`FUGUE`](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FUGUE)). Works without paired-PE acquisitions but fails if the subject moves between field-map and BOLD/DWI runs. Phase unwrapping is mandatory before division — wrap artefacts produce sharp false gradients.
+
+**Reversed-PE (topup).** Acquire two short b0 / EPI volumes with opposite phase-encode polarity (AP and PA). The susceptibility distortion has *opposite sign* in the two, so the underlying field can be solved by maximising similarity ( [Andersson 2003](https://doi.org/10.1016/S1053-8119(03)00336-7)). This is the modern default — [FSL `topup`](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup) for the field, then [`eddy`](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/eddy) for per-volume distortion correction in DWI, or [fMRIPrep's SDC](https://fmriprep.org/en/stable/sdc.html) for fMRI. Cost: a few seconds of extra acquisition; requires the PE polarity to be correctly labelled in BIDS. **Preferred for DWI** because the distortion field is sharper, more spatially varying, and matches the diffusion-weighted readout exactly.
+
+**Point-spread-function (PSF) mapping ( [Zaitsev 2004](https://doi.org/10.1002/mrm.20261)).** Acquire an extra phase-encode dimension at low resolution to measure the *actual* PSF of the EPI readout in each voxel. Inverts both displacement *and* intensity pile-up in one step — superior near severe susceptibility (ear canals, frontal sinus) but adds 30–90 s and a specialised reconstruction. Currently used mostly in 7 T research protocols (Tübingen, MGH).
+
+**Synb0-DisCo ([Schilling 2019](https://doi.org/10.1016/j.mri.2019.05.008)).** When no reversed-PE pair was acquired (legacy data, clinical scans), a deep network synthesises an undistorted b0 *from the T1*, which is then fed into topup as if it were the reversed-PE volume. Useful rescue for retrospective datasets. Validate against a held-out site before trusting it on new pathology.
+
+**Where these methods all struggle.** Inferior frontal lobe, temporal lobe near ear canals, brainstem at the foramen magnum. Static susceptibility models assume the field is the same during the long EPI readout — true to first order but breaks down for *intra-volume* dynamic effects (respiration-induced $B_0$ fluctuations of 0.1–1 Hz). For brainstem fMRI, consider [RETROICOR](https://doi.org/10.1002/1522-2594(200007)44:1<162::AID-MRM23>3.0.CO;2-E) or dynamic-distortion-corrected EPI.
+
+**Pipeline behaviour when each is missing.**
+
+| Available data | [fMRIPrep](https://fmriprep.org/en/stable/sdc.html) behaviour | [QSIPrep](https://qsiprep.readthedocs.io/) behaviour |
+|---|---|---|
+| Reversed-PE b0 (AP+PA) | `topup` SDC — first choice | `topup` + `eddy` |
+| Field-map only | Field-map-based SDC (Jezzard) | Field-map → eddy field input |
+| Neither | SDC skipped, "syn-SDC" T1-based fallback | Synb0-DisCo if configured, else SDC skipped |
+
+Document which method was used in your methods section — different correction families leave different residual distortion patterns and can interact with second-level group statistics.
+
+### 10.1 Spiral and other non-Cartesian readouts
+
+Cartesian EPI is the universal default, but it is not the only fast readout. **Spiral** trajectories start at $k = 0$ and spiral outward (or vice versa), filling k-space in a single shot with a continuously-rotating gradient.
+
+- **Distortion advantage.** Off-resonance manifests as *blurring* (a rotational PSF), not as the catastrophic stretch / pile-up of Cartesian EPI. Frontal and temporal cortex stay anatomically faithful, which is why spiral was historically preferred for high-field fMRI ([Glover 1999](https://doi.org/10.1002/(SICI)1522-2594(199912)42:6<1146::AID-MRM23>3.0.CO;2-X)).
+- **Reconstruction cost.** Samples land on a non-Cartesian grid → cannot use plain FFT. Standard pipeline: [non-uniform FFT (NUFFT) / gridding with density compensation](https://web.eecs.umich.edu/~fessler/code/index.html). Field-map blurring correction requires a deconvolution step, not a pixel shift.
+- **Revival at 7 T.** Modern variants — **spiral-in / spiral-in-out** ( [Glover & Law 2001](https://doi.org/10.1002/mrm.1208)), **cones** (3D radial-like), and **stack-of-spirals** — are part of HCP-style 7 T protocols where Cartesian EPI distortion is intolerable. Vendor support is uneven; most spiral work still runs on academic Pulseq / RTHawk pipelines rather than product sequences.
+- **When to consider it.** OFC- or brainstem-focused fMRI at ≥ 3 T, ultra-high-resolution 7 T BOLD, anywhere distortion is the limiting factor and reconstruction effort is acceptable.
+
+## 11. Clinical and research uses
 
 - DWI-EPI — acute ischemic stroke (restricted diffusion); interpretation requires clinical training.
 
@@ -150,7 +262,7 @@ These are not raw DICOM; they are what pipelines produce after preprocessing (na
 
 - Research parameters may not be diagnostic quality.
 
-## 9. Worked examples (step-by-step)
+## 12. Worked examples (step-by-step)
 
 ### Example A — Temporal sampling and Nyquist (fMRI)
 
@@ -168,7 +280,7 @@ These are not raw DICOM; they are what pipelines produce after preprocessing (na
 
 - Higher b → stronger attenuation exp(−b·ADC) — SNR drops; need more averages or thicker slices or lower resolution.
 
-## 10. Common pitfalls (checklist)
+## 13. Common pitfalls (checklist)
 
 - [ ] TotalReadoutTime or EffectiveEchoSpacing missing → unwarping fails or wrong scale.
 
@@ -178,33 +290,53 @@ These are not raw DICOM; they are what pipelines produce after preprocessing (na
 
 - [ ] Ignoring motion in long resting-state → group maps driven by motion correlation.
 
-## 11. Credible peer-reviewed papers (EPI / fMRI)
+## 14. Credible peer-reviewed papers (EPI / fMRI)
 
 - Mansfield P. Multi-planar image formation using NMR spin echoes. *J Phys C Solid State Phys.* 1977;10(3):L55–L58. https://doi.org/10.1088/0022-3719/10/3/004
 
 - Jezzard P, Clare S. *Functional MRI: An Introduction to Methods.* Oxford University Press.
 
-- Andersson JLR, et al. How to correct susceptibility distortions in spin-echo echo-planar images: application to diffusion tensor imaging. *NeuroImage.* 2003;20(2):870–888. https://doi.org/10.1016/S1053-8119(03)00336-700336-7)
+- Andersson JLR, et al. How to correct susceptibility distortions in spin-echo echo-planar images: application to diffusion tensor imaging. *NeuroImage.* 2003;20(2):870–888. https://doi.org/10.1016/S1053-8119(03)00336-7
 
 - Ogawa S, et al. Brain magnetic resonance imaging with contrast dependent on blood oxygenation. *Proc Natl Acad Sci U S A.* 1990;87(24):9868–9872. https://doi.org/10.1073/pnas.87.24.9868
 
-## 12. Credible online resources
+- Setsompop K, Gagoski BA, Polimeni JR, Witzel T, Wedeen VJ, Wald LL. Blipped-controlled aliasing in parallel imaging for simultaneous multislice echo planar imaging with reduced g-factor penalty. *Magn Reson Med.* 2012;67(5):1210–1224. https://doi.org/10.1002/mrm.23097
 
-- FSL — topup, eddy, FEAT
+- Kundu P, Inati SJ, Evans JW, Luh W-M, Bandettini PA. Differentiating BOLD and non-BOLD signals in fMRI time series using multi-echo EPI. *NeuroImage.* 2012;60(3):1759–1770. https://doi.org/10.1016/j.neuroimage.2011.12.028
 
-- mriquestions — EPI
+- DuPre E, Salo T, Ahmed Z, et al. TE-dependent analysis of multi-echo fMRI with tedana. *J Open Source Softw.* 2021;6(66):3669. https://doi.org/10.21105/joss.03669
 
-- AFNI documentation
+- Schilling KG, Blaber J, Huo Y, et al. Synthesized b0 for diffusion distortion correction (Synb0-DisCo). *Magn Reson Imaging.* 2019;64:62–70. https://doi.org/10.1016/j.mri.2019.05.008
 
-## 13. References (sources used to create this content)
+- Jezzard P, Balaban RS. Correction for geometric distortion in echo planar images from B0 field variations. *Magn Reson Med.* 1995;34(1):65–73. https://doi.org/10.1002/mrm.1910340111
+
+- Posse S, Wiese S, Gembris D, et al. Enhancement of BOLD-contrast sensitivity by single-shot multi-echo functional MR imaging. *Magn Reson Med.* 1999;42(1):87–97. https://doi.org/10.1002/(SICI)1522-2594(199907)42:1<87::AID-MRM13>3.0.CO;2-O
+
+- Glover GH. Simple analytic spiral K-space algorithm. *Magn Reson Med.* 1999;42(2):412–415. https://doi.org/10.1002/(SICI)1522-2594(199908)42:2<412::AID-MRM25>3.0.CO;2-U
+
+- Glover GH, Law CS. Spiral-in/out BOLD fMRI for increased SNR and reduced susceptibility artifacts. *Magn Reson Med.* 2001;46(3):515–522. https://doi.org/10.1002/mrm.1208
+
+- Zaitsev M, Hennig J, Speck O. Point spread function mapping with parallel imaging techniques and high acceleration factors. *Magn Reson Med.* 2004;52(5):1156–1166. https://doi.org/10.1002/mrm.20261
+
+## 15. Credible online resources
+
+- [fMRIPrep SDC documentation](https://fmriprep.org/en/stable/sdc.html) — decision tree for which susceptibility-distortion correction method is applied given available fieldmap data.
+- [tedana documentation](https://tedana.readthedocs.io/en/stable/) — multi-echo ICA denoising, optimal combination, $\kappa$ / $\rho$ scoring.
+- [AFNI `afni_proc.py` multi-echo workflow](https://afni.nimh.nih.gov/pub/dist/doc/program_help/afni_proc.py.html) — `-combine OC` and `-combine tedana` options.
+- [QSIPrep distortion-correction docs](https://qsiprep.readthedocs.io/en/latest/preprocessing.html) — `topup` and Synb0 integration for DWI.
+- [FSL `topup` / `eddy` / FEAT](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/) — distortion + motion correction + first-level GLM.
+- [mriquestions — EPI](https://mriquestions.com/echo-planar-imaging.html) — k-space and ghosting primer.
+- [BIDS specification](https://bids-specification.readthedocs.io/) — fMRI and DWI metadata fields.
+
+## 16. References (sources used to create this content)
 
 - Jezzard P, Clare S. *Functional MRI: An Introduction to Methods.* Oxford University Press.
-
-- FSL topup and eddy documentation — https://fsl.fmrib.ox.ac.uk/
-
-- mriquestions.com — EPI k-space and ghosting — https://mriquestions.com/
-
-- BIDS specification — fMRI and diffusion metadata — https://bids-specification.readthedocs.io/
+- [FSL topup and eddy documentation](https://fsl.fmrib.ox.ac.uk/)
+- [fMRIPrep SDC docs](https://fmriprep.org/en/stable/sdc.html)
+- [tedana docs](https://tedana.readthedocs.io/en/stable/)
+- [AFNI `afni_proc.py` reference](https://afni.nimh.nih.gov/pub/dist/doc/program_help/afni_proc.py.html)
+- [mriquestions.com — EPI k-space and ghosting](https://mriquestions.com/)
+- [BIDS specification — fMRI and diffusion metadata](https://bids-specification.readthedocs.io/)
 
 ### Closing
 
