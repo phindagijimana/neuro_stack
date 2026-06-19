@@ -85,6 +85,8 @@ nav:
       - 2. Your first NIfTI: getting-started/first-nifti.md
       - 3. Your first BIDS app: getting-started/first-bids-app.md
       - 4. Your first figure: getting-started/first-figure.md
+      - Common errors cheatsheet: getting-started/common-errors.md
+      - By the numbers — typical scales: getting-started/by-the-numbers.md
   - Reading paths: paths/index.md
   - Fundamentals:
       - fundamentals/index.md
@@ -92,15 +94,20 @@ nav:
       - Coordinate systems: fundamentals/coordinate-systems.md
       - File formats: fundamentals/file-formats.md
       - Preprocessing overview: fundamentals/preprocessing.md
-      - MRI sequences:
+      - Sequences & modalities:
           - fundamentals/sequences/index.md
           - MPRAGE: fundamentals/sequences/mprage.md
           - DWI: fundamentals/sequences/dwi.md
+          - Advanced diffusion (NODDI / DKI / CSD): fundamentals/sequences/advanced-diffusion.md
           - EPI: fundamentals/sequences/epi.md
           - FLAIR: fundamentals/sequences/flair.md
           - GRE: fundamentals/sequences/gre.md
           - SWI: fundamentals/sequences/swi.md
           - Spin echo: fundamentals/sequences/spin-echo.md
+          - ASL (perfusion): fundamentals/sequences/asl.md
+          - MR Spectroscopy: fundamentals/sequences/mrs.md
+          - Quantitative MRI: fundamentals/sequences/qmri.md
+          - PET: fundamentals/sequences/pet.md
       - Computational & math foundations:
           - fundamentals/foundations/index.md
           - Python: fundamentals/foundations/python.md
@@ -129,11 +136,16 @@ nav:
       - Common pitfalls: bids/pitfalls.md
   - Analysis:
       - analysis/index.md
+      - Task fMRI design & power: analysis/design.md
+      - Quality control & outliers: analysis/qc.md
       - Structural morphometry: analysis/structural.md
       - Diffusion & tractography: analysis/diffusion.md
       - Functional connectivity: analysis/functional.md
+      - Resting-state in practice: analysis/resting-state.md
+      - RSA & encoding/decoding: analysis/rsa-decoding.md
       - Surface-based analysis: analysis/surface.md
       - EEG / MEG analysis: analysis/eeg-meg.md
+      - Longitudinal & mixed-effects: analysis/longitudinal.md
       - Group-level statistics: analysis/group-stats.md
       - Multiple comparisons: analysis/multiple-comparisons.md
   - Data engineering:
@@ -184,8 +196,25 @@ nav:
       - Deep learning for imaging: ai/deep-learning.md
       - Training mechanics: ai/training-mechanics.md
       - Foundation models: ai/foundation-models.md
+      - Graph neural networks for connectomics: ai/gnn.md
+      - Interpretability: ai/interpretability.md
+      - Uncertainty quantification: ai/uncertainty.md
       - Evaluation pitfalls: ai/evaluation.md
       - Regulatory & clinical deployment: ai/regulatory.md
+  - Clinical applications:
+      - clinical/index.md
+      - Alzheimer's & related dementias: clinical/alzheimers-and-dementia.md
+      - Parkinson's & movement disorders: clinical/parkinsons-and-movement.md
+      - Stroke & TBI: clinical/stroke-and-tbi.md
+      - Epilepsy: clinical/epilepsy.md
+      - Psychiatric disorders: clinical/psychiatry.md
+      - Multiple sclerosis: clinical/multiple-sclerosis.md
+  - Governance & ethics:
+      - governance/index.md
+      - IRB & research ethics: governance/irb-and-ethics.md
+      - Privacy — HIPAA & GDPR: governance/privacy-and-hipaa-gdpr.md
+      - Federated & privacy-preserving ML: governance/federated-and-privacy-preserving.md
+      - Data sharing & DUAs: governance/data-sharing-and-dua.md
   - Computing:
       - computing/index.md
       - Python scientific stack: computing/python-stack.md
@@ -213,6 +242,14 @@ nav:
       - Capstone — DICOM to figure: tutorials/capstone.md
   - Tools:
       - tools/index.md
+      - Decision trees: tools/decision-trees.md
+      - Visualization & EDA: tools/viz-and-eda.md
+      - Clinical deployment: tools/clinical-deployment.md
+  - Career & communication:
+      - career/index.md
+      - Writing reproducible methods: career/methods-writing.md
+      - Grant writing: career/grant-writing.md
+      - Transitions — academia ↔ industry: career/transitions.md
   - Glossary: glossary.md
   - Further reading: further-reading.md
 
