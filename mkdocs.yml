@@ -107,7 +107,9 @@ nav:
           - ASL (perfusion): fundamentals/sequences/asl.md
           - MR Spectroscopy: fundamentals/sequences/mrs.md
           - Quantitative MRI: fundamentals/sequences/qmri.md
+          - MR Fingerprinting (MRF): fundamentals/sequences/mrf.md
           - PET: fundamentals/sequences/pet.md
+          - EEG fundamentals: fundamentals/sequences/eeg.md
       - Computational & math foundations:
           - fundamentals/foundations/index.md
           - Python: fundamentals/foundations/python.md
