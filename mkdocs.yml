@@ -146,7 +146,9 @@ nav:
       - Resting-state in practice: analysis/resting-state.md
       - RSA & encoding/decoding: analysis/rsa-decoding.md
       - Surface-based analysis: analysis/surface.md
-      - EEG / MEG analysis: analysis/eeg-meg.md
+      - MRF analysis (quantitative maps): analysis/mrf.md
+      - EEG / MEG analysis (overview): analysis/eeg-meg.md
+      - EEG analysis (deep dive): analysis/eeg.md
       - Longitudinal & mixed-effects: analysis/longitudinal.md
       - Group-level statistics: analysis/group-stats.md
       - Multiple comparisons: analysis/multiple-comparisons.md
