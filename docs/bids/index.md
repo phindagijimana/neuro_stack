@@ -22,6 +22,8 @@ It's written for the person who has a directory of imaging data and now has to m
 
 -   :material-alert-octagon: **[Common pitfalls](pitfalls.md)** — special characters in IDs, IntendedFor mistakes, sidecar inheritance bugs.
 
+-   :material-file-document-multiple: **[Per-modality conversion guides](modalities/index.md)** — sixteen pages, one per BIDS data type (anat, func, dwi, fmap, perf, mrs, swi, qmri, pet, eeg, ieeg, meg, nirs, motion, micr, beh+physio).
+
 </div>
 
 ## The canonical BIDS resources

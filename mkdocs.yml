@@ -136,6 +136,24 @@ nav:
       - Derivatives layout: bids/derivatives.md
       - Versioning with DataLad: bids/datalad.md
       - Common pitfalls: bids/pitfalls.md
+      - Per-modality conversion guides:
+          - bids/modalities/index.md
+          - anat — Anatomical MRI: bids/modalities/anat.md
+          - func — Functional MRI (BOLD): bids/modalities/func.md
+          - dwi — Diffusion MRI: bids/modalities/dwi.md
+          - fmap — Field maps: bids/modalities/fmap.md
+          - perf — Arterial spin labeling: bids/modalities/perf.md
+          - mrs — MR Spectroscopy: bids/modalities/mrs.md
+          - swi — Susceptibility-weighted: bids/modalities/swi.md
+          - qmri — Quantitative MRI: bids/modalities/qmri.md
+          - pet — Positron Emission Tomography: bids/modalities/pet.md
+          - eeg — Electroencephalography: bids/modalities/eeg.md
+          - ieeg — Intracranial EEG: bids/modalities/ieeg.md
+          - meg — Magnetoencephalography: bids/modalities/meg.md
+          - nirs — Near-infrared spectroscopy: bids/modalities/nirs.md
+          - motion — Motion / IMU / eye-tracking: bids/modalities/motion.md
+          - micr — Microscopy: bids/modalities/micr.md
+          - beh + physio + stim: bids/modalities/beh-physio.md
   - Neuroimaging Analysis:
       - analysis/index.md
       - Task fMRI design & power: analysis/design.md
