@@ -75,4 +75,4 @@ Benefits: full audit trail, rollback by `git revert`, no CI credentials in clust
 
 ## Where to next
 
-[FinOps](finops.md).
+[Cohort-scale pipelines](cohort-scale.md) — the operational patterns IaC is most often used to provision for in neuroimaging contexts.

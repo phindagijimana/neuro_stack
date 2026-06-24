@@ -76,7 +76,7 @@ Every design choice has a $ price tag at scale:
 - Running `recon-all` with 5-way concurrency: same total CPU-hours, but the cohort finishes in ~120 wall hours.
 - Switching to FastSurfer: ~60 CPU-hours instead of 600. **Maybe 90% cost reduction** at the price of slightly different surfaces.
 
-A senior DE always knows the *dollar-per-run* of their main pipeline and can speak to the cost / benefit of optimisations. In the cloud this is measured in AWS bill lines; in HPC it's CPU-hour quotas. See [FinOps](advanced/finops.md) for the deeper treatment.
+A senior DE always knows the *dollar-per-run* of their main pipeline and can speak to the cost / benefit of optimisations. In the cloud this is measured in AWS bill lines; in HPC it's CPU-hour quotas. The neuroimaging-specific cost regimes — N=10k UK-Biobank-scale storage tiering, fMRIPrep walltime budgeting, S3 egress for cohort downloads — are covered in [Cohort-scale pipelines](advanced/cohort-scale.md) and [Cloud computing](../computing/cloud.md#the-cost-math).
 
 ## Where to next
 

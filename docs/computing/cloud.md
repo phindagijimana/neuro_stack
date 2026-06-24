@@ -160,7 +160,7 @@ flowchart TD
   H --> I
 ```
 
-Use the [AWS Pricing Calculator](https://aws.amazon.com/calculator/) (and [FAIR cost calculator](https://aws.amazon.com/calculator/) for academic estimates) to sanity-check before committing to architecture. A worked DWI-cohort budget is in [FinOps and cost engineering](../data-engineering/advanced/finops.md#worked-case-study-dwi-cohort-n1000-on-aws).
+Use the [AWS Pricing Calculator](https://aws.amazon.com/calculator/) (and [FAIR cost calculator](https://aws.amazon.com/calculator/) for academic estimates) to sanity-check before committing to architecture. A worked cohort-scale storage and compute walkthrough is in [Cohort-scale pipelines](../data-engineering/advanced/cohort-scale.md).
 
 ## Cost monitoring
 

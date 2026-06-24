@@ -205,7 +205,7 @@ nav:
           - Data contracts: data-engineering/advanced/data-contracts.md
           - Security & governance: data-engineering/advanced/security.md
           - Infrastructure as code: data-engineering/advanced/iac.md
-          - FinOps: data-engineering/advanced/finops.md
+          - Cohort-scale pipelines: data-engineering/advanced/cohort-scale.md
           - Performance deep-dive: data-engineering/advanced/performance.md
           - Concurrency: data-engineering/advanced/concurrency.md
           - Data quality: data-engineering/advanced/data-quality.md

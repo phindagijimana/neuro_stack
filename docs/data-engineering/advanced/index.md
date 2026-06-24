@@ -20,7 +20,7 @@ These are deliberately broad — they're written so you'll recognise the territo
 | [Data contracts](data-contracts.md) | Producer–consumer agreements, compatibility modes, schema registries. |
 | [Security & governance](security.md) | IAM, encryption, PII/PHI, GDPR/HIPAA primer for engineers. |
 | [Infrastructure as code](iac.md) | Terraform, Helm, GitOps. |
-| [FinOps](finops.md) | The five cost levers, showbacks vs chargebacks. |
+| [Cohort-scale pipelines](cohort-scale.md) | N=10k+ patterns — sharding, tiered derivative storage, long-job checkpointing, partial-results recovery, BWAS readiness. |
 | [Performance deep-dive](performance.md) | Little's law, percentiles, hot keys, locality. |
 | [Concurrency](concurrency.md) | ACID isolation levels, MVCC, locks, deadlocks, connection pools. |
 | [Data quality](data-quality.md) | Six dimensions, circuit breakers, drift detection. |

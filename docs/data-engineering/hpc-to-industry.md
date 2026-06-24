@@ -40,7 +40,7 @@ Specifically, if your repo has:
 | Final artifact is an analysis or a paper | Final artifact is a contract another team depends on |
 | The author is the operator | A separate platform team operates what you authored |
 | One copy of the data, mutable | Versioned, immutable, time-travelable |
-| Quota and FTE | Cloud bill, cost-per-row, FinOps |
+| Quota and FTE | Cloud bill, cost-per-row, per-cohort scaling |
 | `seff`, `sacct` | Prometheus, Grafana, OpenTelemetry |
 | Slurm priority queues | Multi-tenant namespaces with resource quotas |
 
@@ -60,7 +60,7 @@ The biggest cultural delta isn't tooling — it's that **someone else depends on
 | `seff` / `sacct` | Datadog / Grafana / CloudWatch | Per-process metrics → per-task metrics in a TSDB. |
 | `.out` / `.err` files | Loki / Elastic / Splunk | Grep is replaced by LogQL / KQL / SPL. |
 | Slurm fair-share | K8s ResourceQuotas + priority classes | Same idea, different control plane. |
-| Lab disk quota | S3 cost report + lifecycle | FinOps replaces quota. |
+| Lab disk quota | S3 cost report + lifecycle | Cohort-scale tier rotation replaces quota. |
 | `sbatch ... && sbatch --dependency=afterok` | DAG edges | The scheduler owns the dependency, not the user. |
 | MPI / `mpirun` | Spark / Ray / Dask | Data-parallel framework instead of message-passing. |
 | `pickle` / Parquet on Lustre | Iceberg / Delta on S3 | Tables on object storage with ACID. |
@@ -99,7 +99,7 @@ The bad news is that you need a small but real set of *new* skills. The good new
 | **dbt and SQL warehouse work** | The dominant transformation paradigm; how analytics engineers ship. | Write three dbt models against your gold layer; add tests. |
 | **Observability stack** (Prometheus, Grafana, Loki, OpenTelemetry) | Beyond `.out` files; the substrate for SLOs and on-call. | One Grafana dashboard for the `runs` table; one alert that fires correctly. |
 | **On-call and incident discipline** | The cultural delta. You will be paged; you will write postmortems. | Read [Incident management](advanced/incident-management.md); shadow one rotation. |
-| **FinOps** | Every line has a $; every retry is a real number. | Add `cost_usd` per row to `runs`; build a weekly cost report. |
+| **Cohort cost-awareness** | Every line has a $; every retry is a real number. | Add `cost_usd` per row to `runs`; build a weekly cost report. |
 | **Security & compliance basics** (SOC 2 lite, encryption at rest/in transit, audit logs, secrets) | The PHI side of the work is more regulated than IRB; learn the equivalents. | Move secrets out of `.env` into Vault / SSM / Secret Manager. |
 | **The product mindset** | Your output has consumers with expectations, not just a graph in Figure 3. | Write a one-page data contract for one gold table; circulate it. |
 
@@ -110,7 +110,7 @@ And the explicit "doesn't transfer" list — the things you do as a scientist th
 - **"Submit and forget."** Industry pipelines have SLOs. Learn [SLOs and runbooks](reliability.md).
 - **One copy of the data.** Production data is versioned (Iceberg snapshots, Delta time travel, S3 versioning). Overwriting in place is a footgun.
 - **Author-as-operator.** In industry, the person who wakes up at 3am is on a rotation; the runbook is the bridge.
-- **Free compute at the margin.** A loop that retries forever is an incident. FinOps is a real practice — see [FinOps](advanced/finops.md).
+- **Free compute at the margin.** A loop that retries forever is an incident. At cohort scale this becomes its own discipline — see [Cohort-scale pipelines](advanced/cohort-scale.md).
 - **MPI.** Almost nobody writes MPI for data pipelines in industry. Distributed memory is via Spark/Ray/Dask. Learn one of these — see [Spark](advanced/spark.md).
 - **Bespoke everything.** The first instinct of a researcher is to write a tool; the first instinct of a platform engineer is to evaluate existing tools. Resist the urge to ship a homemade orchestrator.
 
@@ -172,7 +172,7 @@ A concrete, sequenced plan from "Slurm-only" to "industry-credible". Each month 
 - Wire structured logs to a real aggregator (Loki on a single VM is fine).
 - Build a Grafana dashboard on top of the `runs` table: throughput, p95 runtime per stage, $/subject.
 - Write one runbook for your most common failure and have a labmate use it.
-- Pick *one* polish: streaming intake, ephemeral PR environments, FinOps dashboard. Ship it.
+- Pick *one* polish: streaming intake, ephemeral PR environments, cost dashboard. Ship it.
 - Deliverable: a README that ends with screenshots of the dashboard and a list of SLOs you actually meet.
 
 At the end of six months, your repo demonstrates DAGs, idempotency, containers, CI, cloud compute, IaC, lakehouse tables, contracts, observability, and a defended SLO. That is what an industry hiring loop is looking for; nothing else needs to be on the CV. See [Portfolio roadmap](portfolio-roadmap.md) for the public-facing case-study framing of this plan and [Interviewing for senior DE roles](advanced/interviewing.md) for what the loop itself looks like.
