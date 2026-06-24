@@ -98,7 +98,7 @@ The same tractogram routed through Desikan-Killiany (84 nodes), Glasser HCP-MMP1
 
 ### Bundle-specific analysis: when ROI-based stats beat whole-brain
 
-Whole-brain TBSS and connectome-wide NBS suffer from massive multiple comparisons and a "wash-out" effect: a real focal change in the uncinate fasciculus gets diluted by 100,000 voxels of stable WM. Bundle-specific approaches reverse this. [AFQ](https://yeatmanlab.github.io/AFQ/) ([Yeatman et al., 2012](https://doi.org/10.1371/journal.pone.0049790)) profiles FA/MD along 100 nodes of each of ~20 canonical tracts; [TractSeg](https://github.com/MIC-DKFZ/TractSeg) ([Wasserthal et al., 2018](https://doi.org/10.1016/j.neuroimage.2018.07.070)) uses a CNN on CSD peaks to segment 72 bundles without registration to a template. Use bundle-specific when (a) you have a tract-level hypothesis (uncinate in psychosis, arcuate in aphasia), (b) you want to localise *where along the tract* a change sits, or (c) cohort size is small and you cannot afford whole-brain correction. Use whole-brain TBSS or fixel-based when the hypothesis is genuinely diffuse (ageing, generalised MS).
+Whole-brain TBSS and connectome-wide NBS suffer from massive multiple comparisons and a "wash-out" effect: a real focal change in the uncinate fasciculus gets diluted by 100,000 voxels of stable WM. Bundle-specific approaches reverse this. [AFQ](https://yeatmanlab.github.io/AFQ/) ([Yeatman et al., 2012](https://doi.org/10.1371/journal.pone.0049790)) profiles FA/MD along 100 nodes of each of ~20 canonical tracts; [TractSeg](https://github.com/MIC-DKFZ/TractSeg) ([Wasserthal et al., 2018](https://doi.org/10.1016/j.neuroimage.2018.07.070)) uses a CNN on CSD peaks to segment 72 bundles without registration to a template. Use bundle-specific when (a) you have a tract-level hypothesis (uncinate in psychosis, arcuate in aphasia), (b) you want to localise *where along the tract* a change sits, or (c) cohort size is small and you cannot afford whole-brain correction. Use whole-brain TBSS or fixel-based when the hypothesis is genuinely diffuse (ageing, generalised MS). The full TBSS / FBA / tract-profile group-statistics machinery is in [wm-stats.md](wm-stats.md).
 
 ### Free-water modelling: a one-line pointer
 
@@ -131,4 +131,5 @@ Additional citations for *Edge cases and PhD-level concerns*:
 
 ## Where to next
 
-[Functional connectivity](functional.md) — what the BOLD signal tells you about the same connections.
+- [White-matter group statistics](wm-stats.md) — TBSS, fixel-based analysis (FBA), and tract-profile (AFQ / TractSeg / BUAN) machinery for group inference on DWI-derived scalars.
+- [Functional connectivity](functional.md) — what the BOLD signal tells you about the same connections.

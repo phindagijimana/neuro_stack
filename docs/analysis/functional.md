@@ -5,7 +5,7 @@
 ## The standard pipeline
 
 1. **Acquire** resting-state or task BOLD.
-2. **Preprocess** with fMRIPrep (motion correction, distortion correction, registration, optional ICA-AROMA).
+2. **Preprocess** with fMRIPrep (motion correction, distortion correction, registration, optional [ICA-AROMA](ica.md#44-ica-aroma-the-motion-cleanup-killer-app)).
 3. **Confound regression** — remove motion, physiological noise, and global signal effects.
 4. **Parcellate** — extract one timecourse per atlas region.
 5. **Compute connectivity** — typically Pearson correlation, partial correlation, or tangent-space embedding.
@@ -96,4 +96,5 @@ The pipeline above runs cleanly on most cohorts. The failures below are the ones
 
 ## Where to next
 
-[Surface-based analysis](surface.md) — when volumetric BOLD averaging blurs across sulci.
+- [ICA for neuroimaging](ica.md) — the decomposition that powers ICA-AROMA, dual regression, and most of the intrinsic-network literature.
+- [Surface-based analysis](surface.md) — when volumetric BOLD averaging blurs across sulci.

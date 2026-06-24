@@ -151,6 +151,12 @@ nav:
       - EEG analysis (deep dive): analysis/eeg.md
       - Network metrics (graph theory): analysis/network-metrics.md
       - Asymmetry analysis (AI / laterality): analysis/asymmetry.md
+      - VBM (voxel-based morphometry): analysis/vbm.md
+      - White-matter group stats (TBSS / fixel): analysis/wm-stats.md
+      - ICA for neuroimaging: analysis/ica.md
+      - Coordinate / image-based meta-analysis: analysis/meta-analysis.md
+      - Reliability & reproducibility: analysis/reliability.md
+      - Lesion-symptom mapping (VLSM / CLSM): analysis/lesion-symptom-mapping.md
       - Longitudinal & mixed-effects: analysis/longitudinal.md
       - Group-level statistics: analysis/group-stats.md
       - Multiple comparisons: analysis/multiple-comparisons.md

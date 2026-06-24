@@ -9,7 +9,7 @@ This page goes deeper than [Functional connectivity](functional.md): how to choo
 | Family | What you get | When it's the right tool |
 | --- | --- | --- |
 | **Seed-based** | A whole-brain map of correlations with one ROI's timecourse | Targeted hypothesis: "does the amygdala couple to vmPFC differently in patients?" |
-| **ICA** | Spatially independent components ≈ canonical networks (DMN, salience, etc.) | Data-driven; finds networks you didn't anatomically specify; dual regression for group stats. |
+| **ICA** | Spatially independent components ≈ canonical networks (DMN, salience, etc.) | Data-driven; finds networks you didn't anatomically specify; [dual regression](ica.md#43-dual-regression) for group stats. The full ICA machinery (MELODIC, AMICA, ICASSO) is in [ica.md](ica.md). |
 | **Parcellation-based** | A region × region FC matrix | The default for connectomics, ML on connectomes, graph-theory metrics. |
 
 Most labs do all three; the question determines which one you report first.
@@ -182,4 +182,5 @@ That's a 400×400 matrix plus a seed map in ~30 lines. Save `fc_z` per subject; 
 
 ## Where to next
 
-[Longitudinal and mixed-effects models](longitudinal.md) — when the same subjects come back for follow-up scans.
+- [ICA for neuroimaging](ica.md) — the decomposition behind MELODIC, dual regression, ICA-AROMA, and the intrinsic-network parcellations.
+- [Longitudinal and mixed-effects models](longitudinal.md) — when the same subjects come back for follow-up scans.

@@ -260,6 +260,7 @@ Caveats: cluster solutions are not uniquely identified (sign / order / number of
 - [Braindecode](https://braindecode.org/) — Python; deep-learning baselines for EEG with PyTorch.
 - [pyRiemann](https://pyriemann.readthedocs.io/) — Riemannian classifiers in scikit-learn API.
 - [Autoreject](https://autoreject.github.io/) — automatic bad-epoch / bad-channel detection ([Jas 2017](https://doi.org/10.1016/j.neuroimage.2017.06.030)).
+- [ICA cleanup pipeline](ica.md#5-ica-for-eeg) — the standard route for blink / saccade / muscle / ECG artifact removal; AMICA, extended Infomax, [ICLabel](https://github.com/sccn/ICLabel) classification, and the 1 Hz-filter-for-ICA trick ([Winkler 2015](https://doi.org/10.1109/EMBC.2015.7319296)). The full ICA math and EEG-specific nuances live in [ica.md](ica.md).
 - [MNE-BIDS](https://mne.tools/mne-bids/) — BIDS-EEG I/O.
 - [pycrostates](https://github.com/vferat/pycrostates) — microstate analysis in Python.
 - [MOABB](https://github.com/NeuroTechX/moabb) — cross-dataset BCI benchmark suite.

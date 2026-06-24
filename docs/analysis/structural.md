@@ -110,4 +110,5 @@ where $\gamma_i, \delta_i$ are site-specific additive/multiplicative effects est
 
 ## Where to next
 
-[Diffusion & tractography](diffusion.md) — what the white-matter side of the same brain tells you.
+- [Voxel-based morphometry (VBM)](vbm.md) — the voxelwise grey-matter group-stats workhorse that pairs with the SBM cortical pipelines on this page.
+- [Diffusion & tractography](diffusion.md) — what the white-matter side of the same brain tells you.
