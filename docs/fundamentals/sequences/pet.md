@@ -42,7 +42,7 @@ The two 511 keV photons travel ~180° apart.
 
 ### 3.2 Coincidence detection
 
-Ring of scintillator detectors record pairs within a coincidence window (~4–6 ns). Each pair defines a line of response (LOR). Effective spatial resolution: 3–6 mm for clinical scanners, 1–2 mm for HRRT and modern total-body.
+Coincidence-detection PET tomography was introduced by [Phelps et al., 1975](https://jnm.snmjournals.org/content/16/3/210) at Washington University, building on positron-annihilation physics worked out by Wrenn and others in the 1950s-60s. Ring of scintillator detectors record pairs within a coincidence window (~4–6 ns). Each pair defines a line of response (LOR). Effective spatial resolution: 3–6 mm for clinical scanners, 1–2 mm for HRRT and modern total-body.
 
 ### 3.3 Sinogram
 
@@ -316,6 +316,8 @@ Reference-tissue Logan replaces $C_P$ with a reference TAC and yields the distri
 8. Rousset OG, Ma Y, Evans AC. Correction for partial volume effects in PET: principle and validation. *J Nucl Med.* 1998;39(5):904–911. https://jnm.snmjournals.org/content/39/5/904
 
 9. Innis RB, Cunningham VJ, Delforge J, et al. Consensus nomenclature for in vivo imaging of reversibly binding radioligands. *J Cereb Blood Flow Metab.* 2007;27(9):1533–1539. https://doi.org/10.1038/sj.jcbfm.9600493
+
+10. Phelps ME, Hoffman EJ, Mullani NA, Ter-Pogossian MM. Application of annihilation coincidence detection to transaxial reconstruction tomography. *J Nucl Med.* 1975;16(3):210–224. https://jnm.snmjournals.org/content/16/3/210 — the founding coincidence-detection PET tomography paper.
 
 ## Where to next
 

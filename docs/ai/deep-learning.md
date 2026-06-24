@@ -22,6 +22,8 @@ The 3D U-Net [Ronneberger et al., 2015](https://doi.org/10.1007/978-3-319-24574-
 
 ## Volume transformers
 
+The Vision Transformer (ViT, [Dosovitskiy et al., 2020](https://doi.org/10.48550/arXiv.2010.11929)[^vit]) was the first pure-transformer architecture to match CNNs on ImageNet, opening the door to medical-imaging transformers (Swin, UNETR, ViT-V-Net, etc.).
+
 For larger datasets and richer tasks (multi-class segmentation, captioning), transformer-based architectures (Swin UNETR [Hatamizadeh et al., 2022](https://doi.org/10.48550/arXiv.2201.01266)[^swinunetr], UNETR [Hatamizadeh et al., 2021](https://doi.org/10.1109/WACV51458.2022.00181)[^unetr]) are now competitive with — and often beat — pure CNN U-Nets.
 
 Key idea: tokenise the volume into patches, attend across patches, decode back to voxel space. Memory cost is quadratic in number of tokens, so patch size and stride matter enormously.
@@ -86,6 +88,7 @@ This is intentionally simple. Real production code adds checkpointing, AMP scali
 [^swinunetr]: Hatamizadeh A, Nath V, Tang Y, Yang D, Roth HR, Xu D. Swin UNETR. *arXiv:2201.01266.* 2022. [doi:10.48550/arXiv.2201.01266](https://doi.org/10.48550/arXiv.2201.01266)
 [^unetr]: Hatamizadeh A, Tang Y, Nath V, et al. UNETR: Transformers for 3D Medical Image Segmentation. *WACV.* 2022. [doi:10.1109/WACV51458.2022.00181](https://doi.org/10.1109/WACV51458.2022.00181)
 [^monai]: Cardoso MJ, Li W, Brown R, et al. MONAI: An open-source framework for deep learning in healthcare. *arXiv:2211.02701.* 2022. [doi:10.48550/arXiv.2211.02701](https://doi.org/10.48550/arXiv.2211.02701)
+[^vit]: Dosovitskiy A, Beyer L, Kolesnikov A, et al. An image is worth 16x16 words: Transformers for image recognition at scale. *ICLR.* 2021. [doi:10.48550/arXiv.2010.11929](https://doi.org/10.48550/arXiv.2010.11929)
 
 ## Where to next
 

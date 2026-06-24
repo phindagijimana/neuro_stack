@@ -17,6 +17,8 @@ y = X β + ε
 
 Run the GLM at each voxel; produce a statistical map; correct for multiple comparisons.
 
+The GLM as used in fMRI was formalised in [Friston et al., 1995](https://doi.org/10.1002/hbm.460020402)[^friston-glm], which extended Worsley's earlier random-field results ([Worsley et al., 1992](https://doi.org/10.1038/jcbfm.1992.127)[^worsley1992]) into the framework SPM, FSL, and AFNI still use today.
+
 ## Two analysis levels
 
 - **First-level** — within a single subject. For fMRI, this is the BOLD timeseries regressed against the task design matrix; the output per voxel is one β per condition.
@@ -29,7 +31,7 @@ This is the "summary-statistics approach" — FSL's FEAT and SPM's basic pipelin
 When subjects contribute different numbers of timepoints (longitudinal data), or first-level variance differs dramatically (different number of trials, dropouts), the summary-statistics approximation breaks. Switch to a proper mixed model:
 
 - **`nilearn.glm.second_level`** — handles weighted least squares with per-subject variance.
-- **FSL FLAME / FLAME1** — Bayesian; the gold standard for noisy second-level fits.
+- **FSL FLAME / FLAME1** ([Beckmann et al., 2003](https://doi.org/10.1016/S1053-8119(03)00435-X)[^flame]) — Bayesian mixed-effects with full uncertainty propagation; the standard for FSL-based group analyses.
 - **`afex` / `lme4`** in R — when you want full mixed-model flexibility.
 
 ## Designs you'll meet
@@ -44,7 +46,7 @@ Always sketch the design matrix on paper before you trust the output of any tool
 
 ## Permutation testing — the safe default [Winkler et al., 2014](https://doi.org/10.1016/j.neuroimage.2014.01.060)[^palm]
 
-Parametric GLM p-values assume normality, independence, and the right model. For neuroimaging — small samples, heavy-tailed errors, spatial correlation — permutation tests are usually more honest:
+Parametric GLM p-values assume normality, independence, and the right model. For neuroimaging — small samples, heavy-tailed errors, spatial correlation — permutation tests are usually more honest. The canonical neuroimaging permutation-testing reference is [Nichols & Holmes, 2002](https://doi.org/10.1002/hbm.1058)[^nichols-holmes], which formalised single-step max-T and TFCE-style maxima distributions for spatial statistical maps:
 
 - **PALM** (FSL) — voxel-wise or vertex-wise, supports arbitrary designs, including freedman-lane for confound regression. See the [PALM repo](https://github.com/andersonwinkler/PALM).
 - **[FSL `randomise`](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Randomise)** — the canonical permutation engine; PALM is its more flexible successor.
@@ -82,6 +84,10 @@ A reviewer can't tell a Cohen's d = 0.05 result from a d = 1.5 result from a thr
 ## References
 
 [^palm]: Winkler AM, Ridgway GR, Webster MA, Smith SM, Nichols TE. Permutation inference for the general linear model. *NeuroImage.* 2014;92:381-397. [doi:10.1016/j.neuroimage.2014.01.060](https://doi.org/10.1016/j.neuroimage.2014.01.060)
+[^friston-glm]: Friston KJ, Holmes AP, Worsley KJ, Poline JB, Frith CD, Frackowiak RSJ. Statistical parametric maps in functional imaging: a general linear framework. *Hum Brain Mapp.* 1995;2(4):189-210. [doi:10.1002/hbm.460020402](https://doi.org/10.1002/hbm.460020402)
+[^worsley1992]: Worsley KJ, Evans AC, Marrett S, Neelin P. A three-dimensional statistical analysis for CBF activation studies in human brain. *J Cereb Blood Flow Metab.* 1992;12(6):900-918. [doi:10.1038/jcbfm.1992.127](https://doi.org/10.1038/jcbfm.1992.127)
+[^nichols-holmes]: Nichols TE, Holmes AP. Nonparametric permutation tests for functional neuroimaging: a primer with examples. *Hum Brain Mapp.* 2002;15(1):1-25. [doi:10.1002/hbm.1058](https://doi.org/10.1002/hbm.1058)
+[^flame]: Beckmann CF, Jenkinson M, Smith SM. General multilevel linear modeling for group analysis in FMRI. *NeuroImage.* 2003;20(2):1052-1063. [doi:10.1016/S1053-8119(03)00435-X](https://doi.org/10.1016/S1053-8119(03)00435-X)
 
 ## Where to next
 

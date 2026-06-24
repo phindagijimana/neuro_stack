@@ -43,6 +43,8 @@ You pick two. You cannot escape.
 
 ### MRI forward model
 
+Spatial encoding of NMR signals — turning a bulk spectroscopic technique into a tomographic imaging modality — was introduced by [Lauterbur, 1973](https://doi.org/10.1038/242190a0), one of two founding papers (with Mansfield) of MRI.
+
 The MR signal is the Fourier transform of the magnetisation $M(\vec r)$ weighted by coil sensitivity $S_c$:
 
 $$
@@ -194,6 +196,7 @@ The acquisition step *cannot* be fully undone downstream. Spend time getting it 
 ## 7. References
 
 1. **Liang Z-P, Lauterbur PC.** *Principles of Magnetic Resonance Imaging: A Signal Processing Perspective.* IEEE Press; 2000. ISBN 978-0780347236.
+1a. **Lauterbur PC.** Image formation by induced local interactions: examples employing nuclear magnetic resonance. *Nature.* 1973;242:190-191. [doi:10.1038/242190a0](https://doi.org/10.1038/242190a0) — the Nobel-Prize-winning paper introducing spatial encoding for NMR.
 2. **Pruessmann KP, Weiger M, Scheidegger MB, Boesiger P.** SENSE: sensitivity encoding for fast MRI. *Magn Reson Med.* 1999;42(5):952-962. [doi:10.1002/(SICI)1522-2594(199911)42:5<952::AID-MRM16>3.0.CO;2-S](https://doi.org/10.1002/(SICI)1522-2594(199911)42:5%3C952::AID-MRM16%3E3.0.CO;2-S)
 3. **Griswold MA, Jakob PM, Heidemann RM, et al.** Generalized autocalibrating partially parallel acquisitions (GRAPPA). *Magn Reson Med.* 2002;47(6):1202-1210. [doi:10.1002/mrm.10171](https://doi.org/10.1002/mrm.10171)
 4. **Lustig M, Donoho D, Pauly JM.** Sparse MRI: the application of compressed sensing for rapid MR imaging. *Magn Reson Med.* 2007;58(6):1182-1195. [doi:10.1002/mrm.21391](https://doi.org/10.1002/mrm.21391)

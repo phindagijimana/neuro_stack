@@ -14,7 +14,7 @@ Divide α by the number of tests. Correct, ultra-conservative, throws away every
 
 ### FDR (False Discovery Rate)
 
-Control the *expected proportion of false positives among rejected nulls*. Less conservative than Bonferroni; widely accepted. Two flavours:
+Control the *expected proportion of false positives among rejected nulls*. Less conservative than Bonferroni; widely accepted. [Genovese et al., 2002](https://doi.org/10.1006/nimg.2001.1037)[^genovese] introduced FDR control to fMRI thresholding, extending [Benjamini & Hochberg, 1995](https://doi.org/10.1111/j.2517-6161.1995.tb02031.x) to spatial statistical maps. Two flavours:
 
 - **Benjamini-Hochberg** — independence or positive dependence.
 - **Benjamini-Yekutieli** — arbitrary dependence; more conservative.
@@ -25,8 +25,8 @@ Control the *expected proportion of false positives among rejected nulls*. Less 
 
 Control the *probability of one or more false positives anywhere in the map*. Stricter than FDR. Two ways to compute it:
 
-- **Random Field Theory (RFT)** — analytical, assumes smoothness; SPM and old FSL.
-- **Permutation** — empirical, robust to smoothness assumptions; PALM, FSL `randomise`, `nilearn`.
+- **Random Field Theory (RFT)** — analytical, assumes smoothness; SPM and old FSL. The neuroimaging-RFT framework was introduced by [Worsley et al., 1992](https://doi.org/10.1038/jcbfm.1992.127)[^worsley1992-mc] and extended in [Worsley et al., 1996](https://doi.org/10.1002/(SICI)1097-0193(1996)4:1%3C58::AID-HBM4%3E3.0.CO;2-O)[^worsley1996].
+- **Permutation** — empirical, robust to smoothness assumptions; PALM, FSL `randomise`, `nilearn`. The canonical neuroimaging permutation reference is [Nichols & Holmes, 2002](https://doi.org/10.1002/hbm.1058)[^nichols-holmes-mc], which formalised single-step max-T and TFCE-style maxima distributions for spatial statistical maps.
 
 For modern neuroimaging, prefer permutation FWE over RFT FWE.
 
@@ -68,6 +68,10 @@ If your figures show uncorrected maps with a label like "p < 0.001 uncorrected",
 [^eklund]: Eklund A, Nichols TE, Knutsson H. Cluster failure: why fMRI inferences for spatial extent have inflated false-positive rates. *PNAS.* 2016;113(28):7900-7905. [doi:10.1073/pnas.1602413113](https://doi.org/10.1073/pnas.1602413113)
 [^tfce]: Smith SM, Nichols TE. Threshold-free cluster enhancement. *NeuroImage.* 2009;44(1):83-98. [doi:10.1016/j.neuroimage.2008.03.061](https://doi.org/10.1016/j.neuroimage.2008.03.061)
 [^palm]: Winkler AM, Ridgway GR, Webster MA, Smith SM, Nichols TE. Permutation inference for the general linear model. *NeuroImage.* 2014;92:381-397. [doi:10.1016/j.neuroimage.2014.01.060](https://doi.org/10.1016/j.neuroimage.2014.01.060)
+[^genovese]: Genovese CR, Lazar NA, Nichols T. Thresholding of statistical maps in functional neuroimaging using the false discovery rate. *NeuroImage.* 2002;15(4):870-878. [doi:10.1006/nimg.2001.1037](https://doi.org/10.1006/nimg.2001.1037)
+[^worsley1992-mc]: Worsley KJ, Evans AC, Marrett S, Neelin P. A three-dimensional statistical analysis for CBF activation studies in human brain. *J Cereb Blood Flow Metab.* 1992;12(6):900-918. [doi:10.1038/jcbfm.1992.127](https://doi.org/10.1038/jcbfm.1992.127)
+[^worsley1996]: Worsley KJ, Marrett S, Neelin P, Vandal AC, Friston KJ, Evans AC. A unified statistical approach for determining significant signals in images of cerebral activation. *Hum Brain Mapp.* 1996;4(1):58-73. [doi:10.1002/(SICI)1097-0193(1996)4:1<58::AID-HBM4>3.0.CO;2-O](https://doi.org/10.1002/(SICI)1097-0193(1996)4:1%3C58::AID-HBM4%3E3.0.CO;2-O)
+[^nichols-holmes-mc]: Nichols TE, Holmes AP. Nonparametric permutation tests for functional neuroimaging: a primer with examples. *Hum Brain Mapp.* 2002;15(1):1-25. [doi:10.1002/hbm.1058](https://doi.org/10.1002/hbm.1058)
 
 ## Where to next
 

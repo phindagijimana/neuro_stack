@@ -2,6 +2,8 @@
 
 > The scheduler every academic neuroimaging shop uses, and the parts you actually need to know.
 
+Slurm — Simple Linux Utility for Resource Management — was introduced by [Yoo, Jette & Grondona at LLNL in 2003](https://doi.org/10.1007/10968987_3) and is now the dominant scheduler on academic HPC clusters worldwide.
+
 ## Mental model
 
 Slurm is a queue. You submit a job (a script + a resource request); Slurm finds nodes that match; your script runs; the output goes into a log file. Everything else is variations.

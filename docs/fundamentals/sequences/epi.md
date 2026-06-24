@@ -328,6 +328,8 @@ The other research frontier is **accelerated 3D-EPI and multi-echo at high tempo
 
 - Ogawa S, et al. Brain magnetic resonance imaging with contrast dependent on blood oxygenation. *Proc Natl Acad Sci U S A.* 1990;87(24):9868–9872. https://doi.org/10.1073/pnas.87.24.9868
 
+- Kwong KK, Belliveau JW, Chesler DA, et al. Dynamic magnetic resonance imaging of human brain activity during primary sensory stimulation. *PNAS.* 1992;89(12):5675–5679. https://doi.org/10.1073/pnas.89.12.5675 — one of the two founding human-BOLD-fMRI papers (with Ogawa 1992), demonstrated within weeks of each other at MGH and Bell Labs.
+
 - Setsompop K, Gagoski BA, Polimeni JR, Witzel T, Wedeen VJ, Wald LL. Blipped-controlled aliasing in parallel imaging for simultaneous multislice echo planar imaging with reduced g-factor penalty. *Magn Reson Med.* 2012;67(5):1210–1224. https://doi.org/10.1002/mrm.23097
 
 - Kundu P, Inati SJ, Evans JW, Luh W-M, Bandettini PA. Differentiating BOLD and non-BOLD signals in fMRI time series using multi-echo EPI. *NeuroImage.* 2012;60(3):1759–1770. https://doi.org/10.1016/j.neuroimage.2011.12.028

@@ -38,7 +38,7 @@ At 3T, 1 ppm ≈ 128 Hz. Typical metabolite spread: 0–4 ppm.
 
 ## 4. Localisation sequences
 
-Single-voxel spectroscopy uses three orthogonal slice-selective pulses to define a cubic ROI.
+Single-voxel proton MRS for clinical use was established by [Frahm et al., 1989](https://doi.org/10.1002/mrm.1910090110) using the STEAM (stimulated-echo acquisition mode) sequence, alongside [Bottomley, 1987 PRESS](https://doi.org/10.1002/mrm.1910050208) which dominates clinical practice today. Single-voxel spectroscopy uses three orthogonal slice-selective pulses to define a cubic ROI.
 
 | Sequence | Pulses | Pros | Cons |
 |---|---|---|---|
@@ -239,6 +239,8 @@ Output: per-metabolite concentrations, CRLBs, water-scaled and tissue-corrected.
 7. Choi C, et al. 2-hydroxyglutarate detection by magnetic resonance spectroscopy in IDH-mutated patients with gliomas. *Nat Med.* 2012;18(4):624–629. https://doi.org/10.1038/nm.2682
 
 8. Wilson M, et al. Methodological consensus on clinical proton MRS of the brain. *Magn Reson Med.* 2019;82(2):527–550. https://doi.org/10.1002/mrm.27742
+
+9. Frahm J, Bruhn H, Gyngell ML, Merboldt KD, Hänicke W, Sauter R. Localized high-resolution proton NMR spectroscopy using stimulated echoes: initial applications to human brain in vivo. *Magn Reson Med.* 1989;9(1):79–93. https://doi.org/10.1002/mrm.1910090110 — the STEAM single-voxel ¹H-MRS founding paper.
 
 ## Where to next
 

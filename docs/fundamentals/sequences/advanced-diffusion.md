@@ -44,6 +44,8 @@ At $b > 1500$ s/mm² the signal departs from mono-exponential decay. Hindrance a
 
 ## 3. HARDI, q-space, and the angular axis
 
+HARDI — sampling diffusion at many directions on a single b-shell to resolve crossing fibres beyond the tensor model — was introduced by [Tuch et al., 2002](https://doi.org/10.1002/mrm.10268), paving the way for q-ball imaging and CSD.
+
 - **HARDI** = High Angular Resolution Diffusion Imaging: one shell, many directions (typically 45–90+ at $b \approx 2000–3000$ s/mm²).
 
 - Reconstructs an orientation distribution function (ODF) per voxel without committing to a tensor — but still cannot separate intra- vs extra-axonal signal from a single shell.
@@ -308,6 +310,8 @@ The other PhD-level question is **clinical-trial endpoint validation**. Free-wat
 6. Daducci A, et al. Accelerated Microstructure Imaging via Convex Optimization (AMICO) from diffusion MRI data. *Neuroimage.* 2015;105:32–44. https://doi.org/10.1016/j.neuroimage.2014.10.026
 
 7. Jeurissen B, Leemans A, Tournier J-D, Jones DK, Sijbers J. Investigating the prevalence of complex fiber configurations in white matter tissue with diffusion MRI. *Hum Brain Mapp.* 2013;34(11):2747–2766. https://doi.org/10.1002/hbm.22099
+
+8. Tuch DS, Reese TG, Wiegell MR, Makris N, Belliveau JW, Wedeen VJ. High angular resolution diffusion imaging reveals intravoxel white matter fiber heterogeneity. *Magn Reson Med.* 2002;48(4):577–582. https://doi.org/10.1002/mrm.10268 — the founding HARDI paper.
 
 ## Where to next
 

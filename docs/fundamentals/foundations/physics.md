@@ -54,7 +54,7 @@ At equilibrium, a slight excess of spins align with $B_0$, producing a net magne
 
 ## The Bloch equations
 
-The macroscopic dynamics of $M(t) = (M_x, M_y, M_z)$ in the rotating frame, with RF field $B_1$:
+The relaxation equations underlying all MR signal modelling were derived by [Bloch, 1946](https://doi.org/10.1103/PhysRev.70.460), who shared the 1952 Nobel Prize in Physics with Purcell. The macroscopic dynamics of $M(t) = (M_x, M_y, M_z)$ in the rotating frame, with RF field $B_1$:
 
 $$
 \frac{dM}{dt} = \gamma (M \times B) - \frac{M_x \hat x + M_y \hat y}{T_2} - \frac{(M_z - M_0)\hat z}{T_1}
@@ -79,6 +79,8 @@ A **flip angle** $\alpha$ pulse rotates $M$ from $z$ toward the transverse plane
 For sequence specifics see [Fundamentals → MRI sequences](../sequences/index.md).
 
 ## Gradients and spatial encoding
+
+Turning NMR from a bulk spectroscopic technique into a tomographic imaging modality was the contribution of [Lauterbur, 1973](https://doi.org/10.1038/242190a0) — using switchable gradients to encode position into precession frequency — one of two founding papers (with Mansfield) of MRI.
 
 A second class of magnetic fields — **gradients** $G_x, G_y, G_z$ — make $B_z$ position-dependent:
 
@@ -271,6 +273,8 @@ If any of these are unknown when you process the data later, the methods section
 2. **Bernstein MA, King KF, Zhou XJ.** *Handbook of MRI Pulse Sequences.* Academic Press; 2004. ISBN 978-0120928613.
 3. **McRobbie DW, Moore EA, Graves MJ, Prince MR.** *MRI from Picture to Proton.* 3rd ed. Cambridge University Press; 2017. ISBN 978-1107643239.
 4. **Mansfield P.** Multi-planar image formation using NMR spin echoes. *J Phys C Solid State Phys.* 1977;10(3):L55-L58. [doi:10.1088/0022-3719/10/3/004](https://doi.org/10.1088/0022-3719/10/3/004) — EPI.
+4a. **Lauterbur PC.** Image formation by induced local interactions: examples employing nuclear magnetic resonance. *Nature.* 1973;242:190-191. [doi:10.1038/242190a0](https://doi.org/10.1038/242190a0) — founding paper of MRI.
+4b. **Bloch F.** Nuclear induction. *Phys Rev.* 1946;70:460-474. [doi:10.1103/PhysRev.70.460](https://doi.org/10.1103/PhysRev.70.460) — derivation of the Bloch equations.
 5. **Stejskal EO, Tanner JE.** Spin diffusion measurements: spin echoes in the presence of a time-dependent field gradient. *J Chem Phys.* 1965;42(1):288-292. [doi:10.1063/1.1695690](https://doi.org/10.1063/1.1695690)
 6. **Ogawa S, Tank DW, Menon R, et al.** Intrinsic signal changes accompanying sensory stimulation: functional brain mapping with magnetic resonance imaging. *PNAS.* 1992;89(13):5951-5955. [doi:10.1073/pnas.89.13.5951](https://doi.org/10.1073/pnas.89.13.5951)
 7. **Buxton RB, Wong EC, Frank LR.** Dynamics of blood flow and oxygenation changes during brain activation: the balloon model. *Magn Reson Med.* 1998;39(6):855-864. [doi:10.1002/mrm.1910390602](https://doi.org/10.1002/mrm.1910390602)

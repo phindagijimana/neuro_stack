@@ -2,6 +2,8 @@
 
 > Estimating which brain regions co-fluctuate in their BOLD signal — the most common rs-fMRI analysis.
 
+BOLD-contrast fMRI was demonstrated in humans by two independent groups in 1992: [Kwong et al., 1992](https://doi.org/10.1073/pnas.89.12.5675)[^kwong] at MGH and Ogawa et al. at Bell Labs — within weeks of each other.
+
 ## The standard pipeline
 
 1. **Acquire** resting-state or task BOLD.
@@ -93,6 +95,7 @@ The pipeline above runs cleanly on most cohorts. The failures below are the ones
 [^power]: Power JD, Mitra A, Laumann TO, Snyder AZ, Schlaggar BL, Petersen SE. Methods to detect, characterize, and remove motion artifact in resting state fMRI. *NeuroImage.* 2014;84:320-341. [doi:10.1016/j.neuroimage.2013.08.048](https://doi.org/10.1016/j.neuroimage.2013.08.048)
 [^acompcor]: Behzadi Y, Restom K, Liau J, Liu TT. A component based noise correction method (CompCor) for BOLD and perfusion based fMRI. *NeuroImage.* 2007;37(1):90-101. [doi:10.1016/j.neuroimage.2007.04.042](https://doi.org/10.1016/j.neuroimage.2007.04.042)
 [^glover]: Glover GH, Li T-Q, Ress D. Image-based method for retrospective correction of physiological motion effects in fMRI: RETROICOR. *Magn Reson Med.* 2000;44(1):162-167. [doi:10.1002/1522-2594(200007)44:1<162::AID-MRM23>3.0.CO;2-E](https://doi.org/10.1002/1522-2594(200007)44:1%3C162::AID-MRM23%3E3.0.CO;2-E)
+[^kwong]: Kwong KK, Belliveau JW, Chesler DA, et al. Dynamic magnetic resonance imaging of human brain activity during primary sensory stimulation. *PNAS.* 1992;89(12):5675-5679. [doi:10.1073/pnas.89.12.5675](https://doi.org/10.1073/pnas.89.12.5675)
 
 ## Where to next
 

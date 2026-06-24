@@ -6,6 +6,8 @@
 
 Neuroimaging tools have ugly dependencies: specific Python versions, specific FreeSurfer or FSL versions, specific glibc compatibility. Installing them by hand on every machine wastes days. **Containers** ship a frozen filesystem + binaries that runs identically everywhere.
 
+Docker was introduced by [Merkel, 2014](https://www.linuxjournal.com/content/docker-lightweight-linux-containers-consistent-development-and-deployment), popularising OS-level virtualisation built on Linux cgroups + namespaces (which existed since ~2008 but were complicated to use directly).
+
 ## Docker on a laptop ([docs here](https://docs.docker.com/))
 
 ```bash
@@ -137,6 +139,7 @@ This split — Docker for dev, Apptainer for deploy — is the path the [NeuroDe
 2. **Apptainer Project.** [User guide](https://apptainer.org/docs/user/latest/) and [admin guide](https://apptainer.org/docs/admin/latest/).
 3. **Sylabs / Apptainer community announcement, 2021** — [renaming Singularity to Apptainer](https://apptainer.org/news/community-announcement-20211130/) and joining the Linux Foundation.
 4. **Docker Inc.** [Docker docs](https://docs.docker.com/) — engine, build, and Compose.
+4a. **Merkel D.** Docker: lightweight Linux containers for consistent development and deployment. *Linux Journal.* 2014;239:2. [Free article](https://www.linuxjournal.com/content/docker-lightweight-linux-containers-consistent-development-and-deployment) — the introductory Docker paper.
 5. **NVIDIA.** [Container Toolkit install guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) and [CUDA compatibility](https://docs.nvidia.com/deploy/cuda-compatibility/).
 6. **NIH HPC.** [Singularity/Apptainer on Biowulf](https://hpc.nih.gov/apps/singularity.html) — concrete cluster-side examples.
 7. **BIDS Apps.** [Specification](https://bids-apps.neuroimaging.io) and [templates](https://github.com/bids-apps/bids-apps.github.io).
