@@ -129,6 +129,7 @@ nav:
           - Segmentation: fundamentals/medical-imaging/segmentation.md
           - Registration: fundamentals/medical-imaging/registration.md
           - Enhancement & quality: fundamentals/medical-imaging/enhancement.md
+          - Visualization: fundamentals/medical-imaging/visualization.md
   - BIDS toolkit:
       - bids/index.md
       - Validating a dataset: bids/validation.md

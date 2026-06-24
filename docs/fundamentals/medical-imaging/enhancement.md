@@ -201,8 +201,7 @@ Pair the table with a static HTML report (Quarto / Streamlit) and the lab has a 
 
 ## Where to next
 
-That closes the Medical Imaging sub-section. From here:
-
+- [Visualization](visualization.md) — turning the cleaned, registered, segmented volumes into figures a human can interpret.
 - The [Analysis](../../analysis/index.md) section shows what you do with the enhanced, registered, segmented data.
 - The [AI / ML](../../ai/index.md) section covers learned alternatives to several of the steps above.
 - The [Data engineering](../../data-engineering/index.md) section shows how to run all of it at cohort scale.

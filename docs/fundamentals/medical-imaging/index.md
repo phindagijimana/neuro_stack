@@ -66,6 +66,12 @@ The steps are conceptually separate but in practice often interleaved (joint rec
 
     Bias-field correction (N4), denoising (NLM, MP-PCA, NORDIC), Gibbs unringing, motion / distortion correction, super-resolution, and automated QC.
 
+-   :material-eye-outline: **[Visualization](visualization.md)**
+
+    ---
+
+    Turning voxel arrays into figures: orthogonal slices, volume / surface / MIP rendering, statistical-map overlays, the "normal vs pathology" appearance atlas, and the colour-map decisions that decide whether a figure shows truth or hides it.
+
 </div>
 
 ## How every chapter is structured
