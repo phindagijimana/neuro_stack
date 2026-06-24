@@ -59,7 +59,7 @@ The dividing line: this section gives you confidence that *something* works. The
     1. [Installing your environment](install.md) for the environment-versioning details you might not have written down yet.
     2. Skim [Your first BIDS app](first-bids-app.md) for the canonical CLI invocation shape, then move on.
 
-=== "PhD / specialist"
+=== "Advanced / specialist"
 
     Probably skip this section, except to point a student at it.
 

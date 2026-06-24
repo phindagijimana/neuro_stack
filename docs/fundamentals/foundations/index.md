@@ -4,7 +4,7 @@
 
 The rest of the Fundamentals section explains what a neuroimaging dataset is. This sub-section explains the toolkit you need to manipulate it: a programming language, a shell, a statistics vocabulary, the math underneath, and a working grasp of the physics that produced the signal in the first place.
 
-Each page is written for a PhD-level newcomer — someone who knows *some* programming or statistics and needs the gaps filled with the right depth for research work, not introductory snippets.
+Each page is written for a research-track newcomer — someone who knows *some* programming or statistics and needs the gaps filled with the right depth for research work, not introductory snippets.
 
 ## Pages
 
@@ -85,7 +85,7 @@ External anchors per sub-topic. Each list is short on purpose — pick one book,
 
 ### Bash / CLI
 
-- [MIT "The Missing Semester of Your CS Education"](https://missing.csail.mit.edu/) — shell, editors, version control, tooling; the course every PhD wishes existed.
+- [MIT "The Missing Semester of Your CS Education"](https://missing.csail.mit.edu/) — shell, editors, version control, tooling; the course every researcher wishes existed.
 - [The Linux Documentation Project — Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/) — free, long-form, complete.
 - [ExplainShell](https://explainshell.com/) — paste any command, get every flag explained; keep open in a tab.
 

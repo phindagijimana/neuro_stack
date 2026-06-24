@@ -2,7 +2,7 @@
 
 > Mapping the relationship between lesion location and behavioural deficit — the stroke-research workhorse for inferring brain-behaviour causation from natural experiments.
 
-Course map: why lesion data → VLSM → multivariate LSM (SVR-LSM, SCCAN) → connectome lesion-symptom mapping (CLSM / disconnectome) → a complete pipeline → disease applications → PhD pitfalls → software → references → where to next.
+Course map: why lesion data → VLSM → multivariate LSM (SVR-LSM, SCCAN) → connectome lesion-symptom mapping (CLSM / disconnectome) → a complete pipeline → disease applications → specialist pitfalls → software → references → where to next.
 
 ## 1. Learning objectives
 
@@ -157,7 +157,7 @@ Cross-link to [fundamentals/medical-imaging/registration.md](../fundamentals/med
 
 For the broader clinical workup of stroke and TBI cohorts that produce these data, cross-link to [clinical/stroke-and-tbi.md](../clinical/stroke-and-tbi.md).
 
-## 8. PhD pitfalls
+## 8. Specialist pitfalls
 
 **Statistical power.** A 100-patient stroke cohort gives, voxelwise, less power than a 30-subject fMRI design after multiple-comparisons correction. Cluster-extent FWE often fails to find anything; permutation max-stat is more honest about the low power. Run a power analysis before promising the cohort that the study will find something.
 

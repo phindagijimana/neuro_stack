@@ -2,7 +2,7 @@
 
 > How to pool findings across studies cleanly: coordinate-based (ALE, SDM-PSI) versus image-based (IBMA) meta-analysis, with the kernel choice, FWE correction, and pre-registration that make them credible.
 
-Course map: why neuroimaging meta-analyses → coordinate-based (ALE, KDA, MKDA) → image-based (IBMA) → a complete pipeline → tools → preregistration and reporting → PhD pitfalls → references → where to next.
+Course map: why neuroimaging meta-analyses → coordinate-based (ALE, KDA, MKDA) → image-based (IBMA) → a complete pipeline → tools → preregistration and reporting → specialist pitfalls → references → where to next.
 
 ## 1. Learning objectives
 
@@ -137,7 +137,7 @@ A meta-analysis is a primary study, not a literature review. Treat it that way.
 
 Cross-link to [reliability.md](reliability.md) for the broader pre-registration story and to [ai/regulatory.md](../ai/regulatory.md) for the clinical-AI reporting analogues (TRIPOD+AI, CLAIM).
 
-## 8. PhD pitfalls
+## 8. Specialist pitfalls
 
 **Coordinate redundancy.** Preprints, conference abstracts, and journal publications of the same study often re-report the same peaks. Always dedupe by author + cohort N + scanner protocol, not by paper. Two reports of the same cohort inflate the corpus and break the independence assumption that ALE / MKDA rely on.
 

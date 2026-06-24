@@ -2,7 +2,7 @@
 
 > From scalp / 4D-fMRI noise to the default-mode network — ICA is the most-used decomposition in neuroimaging, and the most misused.
 
-Course map: the blind-source-separation idea → the math (FastICA, Infomax) → ICA for fMRI (MELODIC, dual regression, ICA-AROMA) → ICA for EEG (artifact removal, ICLabel, AMICA) → the intrinsic networks ICA recovers → PhD-level pitfalls → software → references → where to next.
+Course map: the blind-source-separation idea → the math (FastICA, Infomax) → ICA for fMRI (MELODIC, dual regression, ICA-AROMA) → ICA for EEG (artifact removal, ICLabel, AMICA) → the intrinsic networks ICA recovers → advanced pitfalls → software → references → where to next.
 
 ## 1. Learning objectives
 
@@ -100,7 +100,7 @@ The output is a per-network group map of where each subject's network "fits" dif
 
 A simple linear classifier (trained on labelled components) decides motion vs not-motion; the non-aggressive regression preserves shared variance with non-motion components. ICA-AROMA is now baked into [fMRIPrep](https://fmriprep.org) as the default motion-cleanup option for resting state — it consistently beats 24-parameter motion regression and scrubbing on standard reproducibility benchmarks ([Parkes 2018](https://doi.org/10.1016/j.neuroimage.2017.12.073)).
 
-### 4.5 PhD nuances for fMRI ICA
+### 4.5 Advanced nuances for fMRI ICA
 
 - **Number-of-components choice**: too few merges real networks; too many splits them. MDL / BIC give a starting point; manual sensitivity analysis at $K \in \{20, 30, 40, 50\}$ is good practice.
 - **Sign and scale indeterminacy**: ICA recovers $\mathbf{s}$ up to a per-component sign and scale. Components are not orderable; matching across subjects requires spatial correlation against a template ([Smith 2009](https://doi.org/10.1073/pnas.0905267106) 10-network or [Allen 2014](https://doi.org/10.1093/cercor/bhs352) 28-network).
@@ -133,7 +133,7 @@ The killer use of ICA on EEG is **artifact removal**. Eye blinks, saccades, musc
 
 [AMICA](https://sccn.ucsd.edu/~jason/amica_a.pdf) ([Palmer 2008](https://sccn.ucsd.edu/~jason/amica_a.pdf)) fits multiple ICA models simultaneously, allowing the mixing matrix to change between stationary segments of the recording. It produces cleaner, more interpretable components than `runica` on long recordings (sleep, naturalistic viewing) where stationarity is implausible. The cost is hours of compute per session; routine for clinical studies, optional for screening.
 
-### 5.4 PhD nuances for EEG ICA
+### 5.4 Advanced nuances for EEG ICA
 
 - **Dimensionality**: ICA needs more independent samples than components. With $\leq 32$ channels the decomposition is unstable; high-density (64 / 128 / 256-channel) systems give cleaner components.
 - **Pre-filter cutoff**: ICA on 0.1 Hz-filtered data leaks slow drift into components; ICA on 1 Hz-filtered data is cleaner — apply the resulting $\mathbf{W}$ back to the 0.1 Hz-filtered analysis copy.
@@ -156,7 +156,7 @@ The dominant non-artifact contribution of ICA to neuroimaging is the modern map 
 
 The 10-network parcellation in [Smith 2009](https://doi.org/10.1073/pnas.0905267106) shows that the same networks emerge whether you decompose a 36-subject resting-state dataset or a 7000-subject task-fMRI meta-analysis from BrainMap — the intrinsic networks recapitulate the task-evoked networks. The [Allen 2014](https://doi.org/10.1093/cercor/bhs352) 28-network parcellation extends to subcortical and cerebellar components for clinical use. See [resting-state.md](resting-state.md) for the broader rs-fMRI context and how these networks slot into seed-based / parcellation-based analysis.
 
-## 7. PhD-level pitfalls
+## 7. Advanced pitfalls
 
 ### 7.1 Non-deterministic decompositions
 

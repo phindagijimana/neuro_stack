@@ -196,7 +196,7 @@ If you've reached this point you've used every section of the handbook:
 - Computing (Slurm + Apptainer + Python environment).
 - AI/ML thinking (you'd plug in nnU-Net for segmentation, classical ML for prediction).
 
-That's PhD-level competence. The rest of the handbook is depth and breadth on top of this synthesis.
+That's research-level competence. The rest of the handbook is depth and breadth on top of this synthesis.
 
 ## References
 

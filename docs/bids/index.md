@@ -65,7 +65,7 @@ The dividing line: this section is about *moving data into the right shape*. Onc
 
     By the end you should be writing BIDS-compliant `derivatives/` trees that fMRIPrep, QSIPrep, or your own group-analysis code can ingest without special-casing.
 
-=== "PhD / specialist"
+=== "Advanced / specialist"
 
     Goal: run a multi-site dataset that has to be reproducible years from now.
 

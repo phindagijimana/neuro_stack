@@ -2,7 +2,7 @@
 
 > How to do voxelwise / fibre-specific group stats on DWI-derived metrics. TBSS is the classical workhorse; fixel-based analysis is the modern fibre-specific alternative.
 
-Course map: why DWI group stats are hard → TBSS in detail → fixel-based analysis (FBA) → tract-profile methods (AFQ, TractSeg, BUAN) → statistical-inference comparison → PhD nuances → canonical disease findings → software → references → where to next.
+Course map: why DWI group stats are hard → TBSS in detail → fixel-based analysis (FBA) → tract-profile methods (AFQ, TractSeg, BUAN) → statistical-inference comparison → advanced nuances → canonical disease findings → software → references → where to next.
 
 ## 1. Learning objectives
 
@@ -159,7 +159,7 @@ A tract profile is a per-subject vector of length 100 (node values). Group infer
 | **Voxelwise GLM (no skeleton)** | Voxel | TFCE permutation | Rare — only with very high-quality registration | The default failure mode; do not use without a good reason |
 | **ROI-mean** | ROI | FDR across ROIs | Hypothesis-confined, transparent | Loses spatial localisation entirely |
 
-## 7. PhD-level nuances
+## 7. Advanced nuances
 
 ### 7.1 Free-water elimination before any group stats
 

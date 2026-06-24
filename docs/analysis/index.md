@@ -60,7 +60,7 @@ The dividing line: this section assumes the data is clean and well-organised, an
 
     At this stage you start picking the right *space* (volume / surface / network) for the question, not just the right tool.
 
-=== "PhD / specialist"
+=== "Advanced / specialist"
 
     Goal: defend a methods section against a sceptical reviewer.
 

@@ -113,7 +113,7 @@ Seminal references for each row:
 - Neonatal HIE on FLAIR/T2: Barkovich AJ, Hajnal BL, Vigneron D, et al. Prediction of neuromotor outcome in perinatal asphyxia: evaluation of MR scoring systems. *AJNR Am J Neuroradiol.* 1998;19(1):143–149.
 - Peri-ictal FLAIR changes: Cole AJ. Status epilepticus and periictal imaging. *Epilepsia.* 2004;45(Suppl 4):72–77.
 
-### PhD / research depth
+### Research depth
 
 The methodological frontier on FLAIR is **derived contrasts and lesion segmentation**. **FLAIR\*** combines FLAIR with T2\* in a multiplicative weighting that sharply emphasises the **central vein sign** — pathognomonic for MS lesions versus mimics (CSVD, migraine, NMOSD) and adopted into the 2024 MAGNIMS-NAIMS criteria refresh ([Sati 2016](https://doi.org/10.1038/nrneurol.2016.166)). **FLAIR²** (Wiggermann 2016) computes FLAIR² = T2-weighted × FLAIR², improving lesion-to-WM contrast for small cortical and infratentorial MS lesions. **3D-FLAIR** (SPACE, CUBE, VISTA) with 1 mm isotropic resolution is now the de facto MS / dementia research standard, displacing 2D-FLAIR at high-volume MS centres because of higher infratentorial sensitivity and better reformatting for tractography ROIs.
 

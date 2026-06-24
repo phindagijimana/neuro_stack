@@ -144,7 +144,7 @@ Seminal references for each row:
 - Hippocampal volumetry in TLE: Bernasconi N, Bernasconi A, Caramanos Z, Antel SB, Andermann F, Arnold DL. Mesial temporal damage in temporal lobe epilepsy: a volumetric MRI study of the hippocampus, amygdala and parahippocampal region. *Brain.* 2003;126(2):462–469. [doi:10.1093/brain/awg250](https://doi.org/10.1093/brain/awg250).
 - Paediatric myelination on T1w: Barkovich AJ. MR imaging of the neonatal brain. *Radiology.* 2006;241(1):14–34. [doi:10.1148/radiol.2391050316](https://doi.org/10.1148/radiol.2391050316).
 
-### PhD / research depth
+### Research depth
 
 Most current methodological work on MPRAGE is about **acquisition acceleration and quantitative substitutes**. Deep-learning-synthesised MPRAGE from under-sampled k-space, variable-flip-angle (VFA) acquisitions, and SynthMPRAGE-style cross-modal estimators (Iglesias et al., SynthSR) collapse 5-minute MPRAGE protocols toward sub-minute scans without losing FreeSurfer-compatible contrast — important for paediatric, intra-operative, and motion-prone populations. **MP2RAGE** (Marques 2010) and its companions (MP3RAGE, FLAWS) recover a self-bias-corrected unified T1 image plus a quantitative T1 map in a single acquisition, which is now the de facto 7 T anatomical scan and a research-grade myelination biomarker. At ultra-high field, MP2RAGE at 0.5–0.7 mm enables **laminar cortical imaging** — mapping cortical layers within the ~3 mm ribbon — opening structural correlates of layer-specific microcircuitry in psychiatry and small-vessel disease research.
 

@@ -2,7 +2,7 @@
 
 > Hounsfield Units to ASPECTS to penumbra: the CT-specific analysis pipeline that turns DICOM stacks into stroke triage, hemorrhage volumes, and clinical-trial endpoints.
 
-Course map: why CT analysis differs from MR analysis → HU calibration → tissue segmentation → ICH segmentation and volume → ASPECTS → CT-perfusion deconvolution → CTA / LVO detection → multi-modal MR-CT integration → disease applications → PhD-level frontiers → software → references.
+Course map: why CT analysis differs from MR analysis → HU calibration → tissue segmentation → ICH segmentation and volume → ASPECTS → CT-perfusion deconvolution → CTA / LVO detection → multi-modal MR-CT integration → disease applications → frontiers → software → references.
 
 ## 1. Learning objectives
 
@@ -190,7 +190,7 @@ ants.image_write(ct_in_t1, "sub-01_ct_in_T1w.nii.gz")
 | Pulmonary embolism (incidental) | Filling defect on CTA | Anticoagulation | Not neuro |
 | Brain death | CTA cerebral circulation arrest | Adjunct to clinical exam | [AAN 2015 guideline](https://doi.org/10.1212/WNL.0000000000001999) |
 
-## 10. PhD-level frontiers
+## 10. Frontiers
 
 - **Photon-counting CT (PCCT).** Direct-conversion CdTe / CdZnTe detectors deliver sub-millimetre resolution, K-edge subtraction for novel contrast (gold, bismuth, gadolinium nanoparticles), and lower dose at equivalent SNR. Siemens Naeotom Alpha FDA-cleared 2021. The neuroimaging applications — sub-millimetre vessel-wall imaging, multi-contrast simultaneous K-edge maps — are early but rapidly advancing. Cite [Willemink 2018](https://doi.org/10.1148/radiol.2018172656).
 - **Deep-learning reconstruction validation.** The AAPM TG279 working group is the active venue for low-dose hallucination, calibration on rare pathology, and regulatory frameworks for re-training. Open question: how do you certify that a DLR reconstruction does not invent a lesion or erase one?

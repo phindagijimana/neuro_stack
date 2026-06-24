@@ -161,7 +161,7 @@ See [Landmark → Reference datasets](../landmark/datasets.md) for the cohort su
 
 ## Open questions
 
-The unsettled problems where current PhD theses live:
+The unsettled problems where current doctoral theses live:
 
 - **Tracer harmonisation beyond Centiloid.** Centiloid works for amyloid; the analogous "Centaur" or tau-Centiloid is much harder because tau tracers have different off-target binding and different binding affinities by tau strain.
 - **Prognostic models on biomarker-positive cognitively normal subjects.** Who progresses, who doesn't, and on what timescale.

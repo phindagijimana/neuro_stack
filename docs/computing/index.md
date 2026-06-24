@@ -64,7 +64,7 @@ The dividing line: this section is about the environment your code runs in, not 
 
     At this stage you should be writing job scripts and container recipes that someone else can rerun unchanged.
 
-=== "PhD / specialist"
+=== "Advanced / specialist"
 
     Goal: scale, cost-control, and long-term reproducibility for a programme of work.
 

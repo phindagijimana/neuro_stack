@@ -2,7 +2,7 @@
 
 > Why your effect size estimate from N=30 won't hold up — and how to design / report studies that survive replication.
 
-Course map: reliability vs reproducibility vs validity → the ICC → test-retest in practice → the BWAS reckoning (Marek 2022) → bootstrap / cross-validation / conformal → pre-registration and open data → reporting standards → PhD pitfalls → references → where to next.
+Course map: reliability vs reproducibility vs validity → the ICC → test-retest in practice → the BWAS reckoning (Marek 2022) → bootstrap / cross-validation / conformal → pre-registration and open data → reporting standards → specialist pitfalls → references → where to next.
 
 ## 1. Learning objectives
 
@@ -184,7 +184,7 @@ Different journals and regulators expect different checklists; the modern field 
 
 For the regulatory implications of TRIPOD+AI and CLAIM, cross-link to [ai/regulatory.md](../ai/regulatory.md); for the AI-side evaluation framework see [ai/evaluation.md](../ai/evaluation.md).
 
-## 9. PhD pitfalls
+## 9. Specialist pitfalls
 
 **High ICC ≠ valid.** A measure can be reliably wrong. Cortical thickness has ICC ≈ 0.9 in every modern pipeline — including in regions where the absolute values from FreeSurfer and ANTs differ by 20%. Pick the right measure first, *then* check that it's reliable.
 

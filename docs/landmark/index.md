@@ -54,7 +54,7 @@ Each page is a hand-picked shortlist. Inclusion criteria, roughly: the work is c
 
     By the end you can defend a "we used X because Y" sentence to a reviewer.
 
-=== "PhD / specialist"
+=== "Advanced / specialist"
 
     Goal: contribute methods, datasets, or tools — not just consume them.
 

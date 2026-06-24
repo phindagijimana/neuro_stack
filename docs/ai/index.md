@@ -64,7 +64,7 @@ The dividing line: this section is the *neuroimaging-shaped* parts of ML — wha
 
     By the end you should be running multi-day training jobs that produce models you'd actually deploy.
 
-=== "PhD / specialist"
+=== "Advanced / specialist"
 
     Goal: contribute methods, ship clinical tools, or stand up a fine-tuned foundation model on a programme cohort.
 

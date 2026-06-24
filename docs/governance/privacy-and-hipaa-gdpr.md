@@ -119,7 +119,7 @@ Sweeney's classic result ([2002](https://doi.org/10.1142/S0218488502001648)) is 
 
 ## De-identification failure cases — when scrubbing isn't enough
 
-Safe Harbor + defacing is the floor, not the ceiling. The literature now documents at least five distinct ways a "de-identified" structural or functional MRI cohort can be re-identified or attacked. A PhD-level threat model treats each of them.
+Safe Harbor + defacing is the floor, not the ceiling. The literature now documents at least five distinct ways a "de-identified" structural or functional MRI cohort can be re-identified or attacked. A specialist threat model treats each of them.
 
 ### Brain shape as fingerprint
 

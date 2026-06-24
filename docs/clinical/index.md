@@ -1,6 +1,6 @@
 # Clinical applications
 
-> Where techniques meet diseases. The section a PhD student lives in once their pipeline starts saying something about a patient.
+> Where techniques meet diseases. The section a researcher lives in once their pipeline starts saying something about a patient.
 
 Most neuroimaging methods are developed against healthy adult cohorts (HCP, UK Biobank) and only later asked to behave in the presence of pathology. This section flips the orientation: each chapter starts from a *disease* — its clinical picture, its biology — and works outward to the imaging biomarkers, pipelines, atlases, and reference cohorts the field has built around it.
 
@@ -49,7 +49,7 @@ If you're new to the underlying neuroanatomy, read [Fundamentals → Neuroscienc
 
     By the end you can defend a "we used X biomarker on Y cohort because Z" sentence to a reviewer.
 
-=== "PhD / specialist"
+=== "Advanced / specialist"
 
     Goal: contribute clinical methods — not just consume them.
 

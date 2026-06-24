@@ -172,7 +172,7 @@ flowchart LR
 
 The cost of "I just need to change one step" is rarely one step — it is one step plus a year of explaining why your derivatives differ from everyone else's.
 
-### Decision section — roll your own vs adopt a BIDS-app (PhD tier)
+### Decision section — roll your own vs adopt a BIDS-app (advanced)
 
 The narrative above is the qualitative answer. Below is the decision you actually defend in a thesis committee or grant: numbers, trade-offs by axis, and a flowchart you can point at.
 

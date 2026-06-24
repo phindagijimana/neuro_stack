@@ -256,7 +256,7 @@ Seminal references for each row:
 - DTI in MS NAWM: Filippi M, Rocca MA, Barkhof F, et al. Association between pathological and MRI findings in multiple sclerosis. *Lancet Neurol.* 2012;11(4):349–360. [doi:10.1038/nrneurol.2013.99](https://doi.org/10.1038/nrneurol.2013.99).
 - DTI in TBI / DAI meta-analysis: Hulkower MB, Poliak DB, Rosenbaum SB, Zimmerman ME, Lipton ML. A decade of DTI in traumatic brain injury: 10 years and 100 articles later. *AJNR Am J Neuroradiol.* 2013;34(11):2064–2074. [doi:10.3174/ajnr.A3395](https://doi.org/10.3174/ajnr.A3395).
 
-### PhD / research depth
+### Research depth
 
 Two parallel research arcs sit on top of clinical DWI. The first is **fixing DTI's specificity problem**. Free-water DTI ([Pasternak 2009](https://doi.org/10.1002/mrm.22055)) corrects for CSF / oedema partial volume — essential when reporting FA in periventricular regions or near MS lesions. HARDI / multi-shell acquisitions (see [advanced-diffusion.md](./advanced-diffusion.md)) replace the single tensor with crossing-fibre-aware fODFs; NODDI and DKI extract microstructural indices that correlate with biology under stated assumptions. Clinical translation barriers are real: 1.5 T scanners with weak gradients (~33 mT/m) struggle to reach the b-values required for multi-shell, and eddy-current correction quality is far from uniform across vendor consoles. Recent harmonisation efforts (ENIGMA-DTI, PRESTIGE-AF, RIN-Italian consortium) build cross-vendor FA atlases that make multi-site DTI biomarker studies tractable.
 

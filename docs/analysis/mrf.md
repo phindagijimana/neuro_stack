@@ -175,7 +175,7 @@ Pitfalls specific to longitudinal MRF:
 - [NITRC](https://nitrc.org) — community-shared neuroimaging datasets; several MRF cohorts archived.
 - [OpenNeuro](https://openneuro.org) — BIDS-native data sharing; the place to deposit new MRF cohorts.
 
-## 10. PhD-level frontiers
+## 10. Frontiers
 
 - **Joint MRF + diffusion.** [Cao 2019](https://doi.org/10.1002/mrm.27894) and [Jiang 2017](https://doi.org/10.1002/mrm.26658) demonstrated simultaneous $T_1, T_2$, and ADC quantification in one acquisition. Analysis side: you now have five maps per voxel — partial-volume modelling and dimensionality reduction (PCA, manifold learning) become the obvious tools.
 - **Partial-volume MRF for mixed tissue voxels.** [Hamilton 2020](https://doi.org/10.1002/mrm.28525) (and the multi-component MRF lineage from [McGivney 2018](https://doi.org/10.1002/nbm.4140)) estimates fractions $(f_\text{GM}, f_\text{WM}, f_\text{CSF})$ rather than point parameters — a partial-volume native quantification at the cost of dictionary explosion.

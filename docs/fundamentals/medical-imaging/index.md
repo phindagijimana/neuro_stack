@@ -1,6 +1,6 @@
 # Medical imaging
 
-> The cross-modality engineering layer — how images are *acquired*, *reconstructed*, *segmented*, *registered*, and *enhanced* — written for PhD-level neuroimaging work.
+> The cross-modality engineering layer — how images are *acquired*, *reconstructed*, *segmented*, *registered*, and *enhanced* — written for research-grade neuroimaging work.
 
 The [MRI sequences](../sequences/index.md) section explains the physics of specific MR sequences. The [Medical imaging physics](../foundations/physics.md) page covers the physical basis of every modality. This section covers the **methodological layer** that turns raw scanner output into the volumes, surfaces, and labels every downstream analysis depends on.
 
@@ -80,7 +80,7 @@ To make this section consistent and reviewable each chapter follows the same fiv
 
 ## Aim
 
-The aim is to take a PhD-level reader from "I can run fMRIPrep" to "I can read the original methods papers, evaluate them critically, and modify the underlying algorithms when my data needs it" — across every imaging modality a neuroimaging cohort might contain.
+The aim is to take an advanced reader from "I can run fMRIPrep" to "I can read the original methods papers, evaluate them critically, and modify the underlying algorithms when my data needs it" — across every imaging modality a neuroimaging cohort might contain.
 
 ## Visual references
 

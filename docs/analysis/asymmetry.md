@@ -2,7 +2,7 @@
 
 > How to quantify left–right differences cleanly: the asymmetry index, language LI from fMRI, hippocampal AI in TLE, frontal alpha asymmetry, and the statistical pitfalls that bite.
 
-Course map: why hemispheric asymmetry matters → the AI formula → structural AI (hippocampus and TLE) → fMRI language LI → DWI tract asymmetry → EEG frontal alpha asymmetry → statistical treatment → software → PhD-level frontiers → references → where to next.
+Course map: why hemispheric asymmetry matters → the AI formula → structural AI (hippocampus and TLE) → fMRI language LI → DWI tract asymmetry → EEG frontal alpha asymmetry → statistical treatment → software → frontiers → references → where to next.
 
 ## 1. Learning objectives
 
@@ -93,7 +93,7 @@ Pipeline (the entire workflow in five steps):
 
 In hippocampal sclerosis (mesial temporal sclerosis, the dominant TLE substrate), the affected hippocampus can lose 30% or more of its volume, with paired T2/FLAIR hyperintensity and loss of internal architecture. The volume AI captures the gross asymmetry; signal-intensity AI captures the gliosis. Cross-link to [clinical/epilepsy.md](../clinical/epilepsy.md) for the full surgical-candidate workup and the HARNESS-MRI protocol.
 
-### 4.2 PhD nuance — subfields beat the whole hippocampus
+### 4.2 Specialist nuance — subfields beat the whole hippocampus
 
 Whole-hippocampus AI misses the **subfield-specific** atrophy patterns that drive the disease. CA1 subfield atrophy is the most sensitive structural marker of HS-TLE ([Bernhardt 2016](https://doi.org/10.1093/brain/aww178)); CA1 + CA4 + subiculum patterns also distinguish HS subtypes. The FreeSurfer hippocampal-subfield module ([Iglesias 2015](https://doi.org/10.1016/j.neuroimage.2015.04.042)) is the standard pipeline; compute per-subfield AIs and report the full vector.
 
@@ -242,7 +242,7 @@ This is the same machinery the LI Toolbox runs; the production version sweeps a 
 - [MNE-Python](https://mne.tools) — `psd_array_welch` / `psd_array_multitaper` on F3 / F4 channels (or source labels) for FAA; spectral connectivity submodule for the broader EEG asymmetry literature ([eeg.md §5](../analysis/eeg.md#5-functional-connectivity-in-eeg)).
 - [PALM (FSL)](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/PALM) — permutation testing for voxelwise / vertexwise AI maps; supports paired within-subject contrasts.
 
-## 10. PhD-level frontiers
+## 10. Frontiers
 
 - **Multi-modal AI fusion.** Combining structural, DWI, and functional asymmetry into a joint laterality score outperforms any single modality ([Kong 2022](https://doi.org/10.1126/sciadv.abh3669)).
 - **Hemispheric specialisation as a continuum.** Laterality is not binary L/R but a gradient of segregation vs integration; [Karolis 2019](https://doi.org/10.1038/s41467-019-09452-y) maps four functional axes of lateralisation that cut across the simple left-vs-right framing.

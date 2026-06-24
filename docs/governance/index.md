@@ -43,7 +43,7 @@ The framing here is operational. Not "what does GDPR Article 9 say" but "what do
 
     You're the person on a project who can answer the compliance email without forwarding it.
 
-=== "PhD / specialist"
+=== "Advanced / specialist"
 
     Goal: lead governance for a multi-site consortium or a federated study.
 

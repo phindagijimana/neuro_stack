@@ -65,7 +65,7 @@ A useful discipline: run the validator on the **raw** dataset before the BIDS ap
 
 ## BIDS Extension Proposals (BEPs) — what to adopt and when
 
-BIDS grows by [BEPs](https://bids.neuroimaging.io/get_involved.html#extending-the-bids-specification): formal proposals that move from draft to merged into the main spec via the [BIDS Maintainers Group](https://bids.neuroimaging.io/governance.html) and pull requests against the [bids-standard/bids-specification](https://github.com/bids-standard/bids-specification) repo. Some are stable and shipped; some are still moving. At PhD level the question is not "is there a BEP for X" but "is the BEP stable enough that my validator, my converter, and my downstream tools all agree on it".
+BIDS grows by [BEPs](https://bids.neuroimaging.io/get_involved.html#extending-the-bids-specification): formal proposals that move from draft to merged into the main spec via the [BIDS Maintainers Group](https://bids.neuroimaging.io/governance.html) and pull requests against the [bids-standard/bids-specification](https://github.com/bids-standard/bids-specification) repo. Some are stable and shipped; some are still moving. At research depth the question is not "is there a BEP for X" but "is the BEP stable enough that my validator, my converter, and my downstream tools all agree on it".
 
 A working snapshot of the BEPs most relevant to neuroimaging pipelines:
 

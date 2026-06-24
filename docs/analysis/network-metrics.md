@@ -2,7 +2,7 @@
 
 > From a connectivity matrix to a defensible group-level claim: nodal, edge, and global metrics, the null-model machinery, and NBS for inference.
 
-Course map: why graph theory → building the matrix → nodal metrics (with node strength) → edge-level inference (NBS) → global metrics → null models → a complete pipeline → disease applications → PhD-level edge cases → software → references → where to next.
+Course map: why graph theory → building the matrix → nodal metrics (with node strength) → edge-level inference (NBS) → global metrics → null models → a complete pipeline → disease applications → edge cases and frontiers → software → references → where to next.
 
 ## 1. Learning objectives
 
@@ -193,7 +193,7 @@ For weighted-rewiring nulls (preserving the weight distribution as well as degre
 | **Autism spectrum** | Increased modularity in adolescence; altered long-range integration | [Rudie 2013](https://doi.org/10.1016/j.nicl.2012.10.006) |
 | **Parkinson's disease** | Cortical-subcortical decoupling; cerebellar hub reorganisation | [Berman 2016](https://doi.org/10.1093/brain/aww148) |
 
-## 10. PhD-level edge cases
+## 10. Edge cases and frontiers
 
 ### 10.1 Parcellation dependence
 

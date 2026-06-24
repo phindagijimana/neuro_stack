@@ -72,9 +72,9 @@ Always state which one. A "DK connectome" with no specification is ambiguous.
 - **5TT segmentation errors.** Bad cortical / WM boundaries cause streamlines to terminate prematurely. Visualise 5TT before tractography.
 - **Over-interpretation.** A streamline is a *modelling artifact*, not a real axon. "There's a connection between A and B" is a hypothesis, not a measurement.
 
-## Edge cases and PhD-level concerns
+## Edge cases and specialist concerns
 
-The standard pipeline above runs on most datasets. The list below is what separates a defensible PhD chapter from a connectome that won't survive peer review.
+The standard pipeline above runs on most datasets. The list below is what separates a defensible thesis chapter from a connectome that won't survive peer review.
 
 ### HARDI angular under-sampling and response-function pitfalls
 
@@ -114,7 +114,7 @@ Run the same dataset through MRtrix3 + iFOD2 + SIFT2, FSL BedpostX + ProbtrackX,
 [^qsiprep]: Cieslak M, Cook PA, He X, et al. QSIPrep. *Nat Methods.* 2021;18(7):775-778. [doi:10.1038/s41592-021-01185-5](https://doi.org/10.1038/s41592-021-01185-5)
 [^dipy]: Garyfallidis E, Brett M, Amirbekian B, et al. DIPY, a library for the analysis of diffusion MRI data. *Front Neuroinform.* 2014;8:8. [doi:10.3389/fninf.2014.00008](https://doi.org/10.3389/fninf.2014.00008)
 
-Additional citations for *Edge cases and PhD-level concerns*:
+Additional citations for *Edge cases and specialist concerns*:
 
 - Jeurissen B, Tournier J-D, Dhollander T, Connelly A, Sijbers J. Multi-tissue constrained spherical deconvolution for improved analysis of multi-shell diffusion MRI data. *NeuroImage.* 2014;103:411-426. [doi:10.1016/j.neuroimage.2014.07.061](https://doi.org/10.1016/j.neuroimage.2014.07.061)
 - Raffelt DA, Tournier J-D, Smith RE, et al. Investigating white matter fibre density and morphology using fixel-based analysis. *NeuroImage.* 2017;144(Pt A):58-73. [doi:10.1016/j.neuroimage.2016.09.029](https://doi.org/10.1016/j.neuroimage.2016.09.029)

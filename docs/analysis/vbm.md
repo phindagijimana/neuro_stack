@@ -2,7 +2,7 @@
 
 > Compare grey-matter density voxel-by-voxel across groups — the workhorse of structural-MRI group analysis since Ashburner & Friston 2000.
 
-Course map: why VBM at all → what each pipeline step does → modulation, smoothing, and the GLM → group inference → VBM vs DBM vs SBM → canonical disease findings → PhD-level pitfalls → software → references → where to next.
+Course map: why VBM at all → what each pipeline step does → modulation, smoothing, and the GLM → group inference → VBM vs DBM vs SBM → canonical disease findings → advanced pitfalls → software → references → where to next.
 
 ## 1. Learning objectives
 
@@ -136,7 +136,7 @@ matlab -batch "spm_smooth('mri/mwp1sub-001_T1w.nii', 'smwp1sub-001_T1w.nii', [8 
 
 For permutation-based inference, run the same modulated, smoothed maps through [FSL `randomise`](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Randomise) with `-T` (TFCE) — empirically the most defensible correction.
 
-## 8. PhD-level pitfalls
+## 8. Advanced pitfalls
 
 ### 8.1 Registration failure in atypical brains
 
